@@ -41,19 +41,13 @@ const TOKEN_OVERRIDE_CSS = `
         <div class="harness">
             <div class="instructions">
                 <p><strong>Custom bottom sheets</strong> use <code>TbxMatBottomSheetService.show()</code> to opt out of every opinionated default. Pass a full <code>TbxMatBottomSheetConfig</code> with explicit severity, icon, footer composition, and chrome flags — no method-level merging. This is the right choice when none of the severity-leveled methods (<code>success</code>, <code>error</code>, etc.) or bottom-sheet-specific patterns (<code>confirm</code>, <code>input</code>) fit.</p>
-                <p>The demos below cover the full range: <code>disableClose</code> to block backdrop and <kbd>Escape</kbd> dismissal, custom icon overrides, the optional drag-handle pill, document-level token overrides for radius and padding, and complex footer compositions. <a href="https://material.angular.dev/components/bottom-sheet/api" target="_blank" rel="noopener">Angular Material's MatBottomSheetConfig</a> does not expose width or height knobs — sizing is controlled entirely via CSS on the host element. Token overrides are scoped to <code>document.body</code> classes that are toggled per story so they don't bleed into other bottom sheet stories.</p>
+                <p>The demos below cover the full range: <code>disableClose</code> to block backdrop and <kbd>Escape</kbd> dismissal, custom icon overrides, document-level token overrides for radius and padding, and complex footer compositions. <a href="https://material.angular.dev/components/bottom-sheet/api" target="_blank" rel="noopener">Angular Material's MatBottomSheetConfig</a> does not expose width or height knobs — sizing is controlled entirely via CSS on the host element. Token overrides are scoped to <code>document.body</code> classes that are toggled per story so they don't bleed into other bottom sheet stories.</p>
             </div>
 
             <h3>Disable Close</h3>
             <p class="theme-note">With <code>disableClose: true</code>, backdrop click and <kbd>Escape</kbd> are blocked. The user must interact with a footer button to close — useful for irreversible actions or required acknowledgements.</p>
             <div class="button-group">
                 <button mat-flat-button (click)="showDisableClose()">Disable Close</button>
-            </div>
-
-            <h3>Drag Handle</h3>
-            <p class="theme-note">Pass <code>dragHandle: true</code> to render a centered grabber pill above the header — a visual affordance signalling dismissibility. The pill is decorative; this package does not implement drag-to-dismiss behavior.</p>
-            <div class="button-group">
-                <button mat-flat-button (click)="showWithDragHandle()">With Drag Handle</button>
             </div>
 
             <h3>Custom Icon Override</h3>
@@ -225,15 +219,6 @@ class BottomSheetCustomHarnessComponent {
         });
     }
 
-    async showWithDragHandle(): Promise<void> {
-        await this.open({
-            title: 'Swipe to Dismiss',
-            type: TbxMatSeverityLevel.Information,
-            dragHandle: true,
-            message: 'A centered drag-handle pill is rendered above the header. The pill is a visual affordance only — backdrop click, Escape, and footer buttons remain the actual dismissal mechanisms.',
-        });
-    }
-
     async showCustomIcon(): Promise<void> {
         await this.open({
             title: 'Launch',
@@ -335,7 +320,7 @@ export const Custom: Story = {
     parameters: {
         docs: {
             description: {
-                story: '`TbxMatBottomSheetService.show()` for full control — no severity defaults, no footer preset. Demonstrates `disableClose`, the optional drag-handle pill, icon overrides, document-level CSS token overrides for surface radius and padding, long scrollable content, footer-less informational surfaces, and complex footer compositions. Width and height are not config knobs — they are controlled entirely via CSS on the bottom sheet host.',
+                story: '`TbxMatBottomSheetService.show()` for full control — no severity defaults, no footer preset. Demonstrates `disableClose`, icon overrides, document-level CSS token overrides for surface radius and padding, long scrollable content, footer-less informational surfaces, and complex footer compositions. Width and height are not config knobs — they are controlled entirely via CSS on the bottom sheet host.',
             },
         },
     },

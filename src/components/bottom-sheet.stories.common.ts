@@ -101,17 +101,11 @@ export const SHARED_HARNESS_ARG_TYPES = {
         options: ['none', 'state-transition', 'pulse'],
         description: 'Severity icon animation. `state-transition` fills the Material Symbols glyph once on enter; `pulse` loops the FILL axis indefinitely.',
     },
-    dragHandle: {
-        name: 'Drag Handle',
-        control: 'boolean' as const,
-        description: 'When `true`, the shell renders a centered drag-handle pill above the header — a visual affordance signalling dismissibility. Decorative only; not interactive.',
-    },
 };
 
 export const DEFAULT_HARNESS_ARGS = {
     iconSize: 'standard' as IconSize,
     iconAnimation: 'none' as IconAnimation,
-    dragHandle: false,
 };
 
 /* ─── Demo input component ──────────────────────────────────────────────────
@@ -232,7 +226,6 @@ export class StoryAlternateCloseIconService extends TbxMatFontIconService<string
                 <button mat-flat-button (click)="showWithContextBadge()">With Badge</button>
                 <button mat-flat-button (click)="showConfirmWithCancel()">Yes / No / Cancel</button>
                 <button mat-flat-button (click)="showDestructive()">Destructive</button>
-                <button mat-flat-button (click)="showWithDragHandle()">With Drag Handle</button>
             </div>
 
             <h3>Footer Controls</h3>
@@ -275,9 +268,6 @@ export class BottomSheetHarnessComponent {
     /** Severity icon animation mode (state-transition fill / pulse / none). */
     readonly iconAnimation = input<IconAnimation>('none');
 
-    /** When true, the bottom sheet shell renders a centered drag-handle pill above the header. */
-    readonly dragHandle = input<boolean>(false);
-
     constructor() {
         // Effects react to Storybook arg changes so the icon size/animation
         // controls update the rendered bottom sheet without remounting the harness.
@@ -289,7 +279,6 @@ export class BottomSheetHarnessComponent {
         const output = await this.bottomSheet.success({
             title: 'Saved',
             message: 'Your changes have been saved successfully.',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -298,7 +287,6 @@ export class BottomSheetHarnessComponent {
         const output = await this.bottomSheet.error({
             title: 'Save Failed',
             message: 'Could not save your changes. The server returned an unexpected error. Please try again or contact support if the problem persists.',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -307,7 +295,6 @@ export class BottomSheetHarnessComponent {
         const output = await this.bottomSheet.warning({
             title: 'Unsaved Changes',
             message: 'You have unsaved changes that will be lost if you navigate away. Are you sure you want to leave this page?',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -316,7 +303,6 @@ export class BottomSheetHarnessComponent {
         const output = await this.bottomSheet.information({
             title: 'Session Expired',
             message: 'Your session has expired. Please sign in again to continue working.',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -325,7 +311,6 @@ export class BottomSheetHarnessComponent {
         const output = await this.bottomSheet.help({
             title: 'How it works',
             message: 'This panel shows tips and guidance for completing your task. Tap any control for more details.',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -334,7 +319,6 @@ export class BottomSheetHarnessComponent {
         const output = await this.bottomSheet.default({
             title: 'Notice',
             message: 'A neutral, severity-agnostic bottom sheet surface for general announcements.',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -343,7 +327,6 @@ export class BottomSheetHarnessComponent {
         const output = await this.bottomSheet.confirm({
             title: 'Delete Project?',
             message: 'This action cannot be undone. All data associated with this project will be permanently removed.',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -352,7 +335,6 @@ export class BottomSheetHarnessComponent {
         const output = await this.bottomSheet.input<StoryInputData>({
             title: 'Enter Details',
             content: StoryInputComponent,
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result === TbxMatBottomSheetDismissReason.Affirm ? `${output.result}: ${JSON.stringify(output.data)}` : output.result);
     }
@@ -362,7 +344,6 @@ export class BottomSheetHarnessComponent {
             title: 'System Update',
             subtitle: 'Version 2.4.0 is now available',
             message: 'A new version is available with performance improvements and bug fixes. The update will be applied automatically during the next maintenance window.',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -372,7 +353,6 @@ export class BottomSheetHarnessComponent {
             title: 'Feature Preview',
             contextBadge: 'Beta',
             message: 'This feature is currently in beta. Some functionality may change before the final release.',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -382,7 +362,6 @@ export class BottomSheetHarnessComponent {
             title: 'Discard Draft?',
             message: 'You have an unsaved draft. Would you like to save it before closing?',
             footer: TBX_MAT_BOTTOM_SHEET_BUTTONS_YES_NO_CANCEL,
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -413,16 +392,6 @@ export class BottomSheetHarnessComponent {
             type: TbxMatSeverityLevel.Error,
             message: 'This will permanently delete your account and all associated data. This action cannot be undone.',
             footer: destructiveButtons,
-            dragHandle: this.dragHandle(),
-        });
-        this.lastResult.set(output.result);
-    }
-
-    async showWithDragHandle(): Promise<void> {
-        const output = await this.bottomSheet.information({
-            title: 'Swipe to Dismiss',
-            message: 'A centered drag-handle pill is rendered above the header — a visual affordance signalling dismissibility. The pill is decorative; this story forces `dragHandle: true` regardless of the Controls toggle.',
-            dragHandle: true,
         });
         this.lastResult.set(output.result);
     }
@@ -441,7 +410,6 @@ export class BottomSheetHarnessComponent {
             title: 'Enable Notifications?',
             message: 'Would you like to receive notifications for this project?',
             footer,
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(`${output.result} (footer: ${JSON.stringify(output.footerValues)})`);
     }
@@ -460,7 +428,6 @@ export class BottomSheetHarnessComponent {
             title: 'Export Settings',
             message: 'Export your current configuration to a file.',
             footer,
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(`${output.result} (footer: ${JSON.stringify(output.footerValues)})`);
     }
@@ -484,7 +451,6 @@ export class BottomSheetHarnessComponent {
             title: 'Export Format',
             message: 'Choose the format for your export.',
             footer,
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(`${output.result} (footer: ${JSON.stringify(output.footerValues)})`);
     }
@@ -494,7 +460,6 @@ export class BottomSheetHarnessComponent {
             title: 'Build Started',
             type: TbxMatSeverityLevel.Information,
             message: 'Your build was queued and will run shortly. There is nothing to confirm — close this sheet via the header close button, backdrop click, or Escape.',
-            dragHandle: this.dragHandle(),
         });
         this.lastResult.set(output.result);
     }
@@ -507,7 +472,6 @@ export class BottomSheetHarnessComponent {
             contextBadge: 'v2',
             type: TbxMatSeverityLevel.Warning,
             message: 'This bottom sheet was opened via the show() method with all options configured manually.',
-            dragHandle: this.dragHandle(),
             footer: [
                 {
                     key: 'acknowledge',
