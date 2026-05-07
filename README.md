@@ -462,7 +462,7 @@ Mirrors the `@teqbench/tbx-mat-banners` and `@teqbench/tbx-mat-notifications` se
 - **Focus.** When the bottom sheet has an affirm button, the shell auto-applies `cdkFocusInitial` to it. When a content component is projected, the consumer's `cdkFocusInitial` on a form field receives focus. Otherwise `autoFocus` falls back to `'dialog'`. The close button is reachable via Tab in every case.
 - **Keyboard.** `Escape` dismisses with `Close` unless `disableClose: true`. `Tab` cycles within the overlay. Footer buttons activate on `Enter` and `Space`.
 - **Reduced motion.** [Angular Material's MatBottomSheet ↗](https://material.angular.dev/components/bottom-sheet/api) honors `prefers-reduced-motion: reduce`.
-- **Color contrast.** The default severity palette meets [WCAG ↗](https://www.w3.org/WAI/standards-guidelines/wcag/) AA contrast. Overriding severity tokens is the consumer's responsibility to re-verify.
+- **Color contrast.** The default severity palette meets [WCAG ↗](https://www.w3.org/WAI/standards-guidelines/wcag/) AA contrast for text on each severity background (default, success, error, warning, information, help). Overriding severity tokens is the consumer's responsibility to re-verify.
 - **Icons.** Severity and close icons are decorative and `aria-hidden`.
 - **Drag handle.** The drag-handle pill is `aria-hidden="true"` and does not signal a draggable interaction to assistive technology.
 
