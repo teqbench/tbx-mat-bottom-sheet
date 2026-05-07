@@ -15,8 +15,7 @@
  * {@link TbxMatBottomSheetSeveritySvgIconService},
  * {@link TbxMatBottomSheetCloseFontIconService}). Footer is a single flex row of buttons
  * and form controls. Input content components implement {@link TbxMatBottomSheetData}
- * with signal-based validation. An optional drag-handle pill is rendered above the header
- * when `config.dragHandle === true` (default `false`).
+ * with signal-based validation.
  *
  * Key exports:
  *

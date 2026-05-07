@@ -13,7 +13,7 @@ import { type TbxMatBottomSheetFooterControlType } from '../types/bottom-sheet-f
  *
  * {@link https://material.angular.dev/components/bottom-sheet/api | Angular Material's MatBottomSheetConfig}
  * does not expose sizing knobs — width and height are controlled entirely via CSS on the
- * host element. Use the `dragHandle` option to opt in to the grabber-pill affordance.
+ * host element.
  *
  * @typeParam T - Type of data for input bottom sheets (the value produced by the projected content
  *   component implementing {@link TbxMatBottomSheetData}). Defaults to `void`.
@@ -33,7 +33,6 @@ import { type TbxMatBottomSheetFooterControlType } from '../types/bottom-sheet-f
  *     subtitle: 'Optional secondary line',
  *     contextBadge: 'Beta',
  *     message: 'Full control over every option.',
- *     dragHandle: true,
  *     footer: [
  *         { key: 'cancel', type: 'button', label: 'Cancel', result: TbxMatBottomSheetDismissReason.Cancel, align: 'end' },
  *         { key: 'proceed', type: 'button', label: 'Proceed', emphasis: 'primary', result: TbxMatBottomSheetDismissReason.Affirm, align: 'end' },
@@ -158,21 +157,6 @@ export interface TbxMatBottomSheetConfig<T = void> {
      * @public
      */
     readonly disableClose?: boolean;
-
-    /**
-     * Render a centered drag-handle pill above the header
-     *
-     * @remarks
-     * When `true`, the shell renders a small grabber pill — a visual affordance signalling
-     * dismissibility. Decorative only; the pill is not interactive (no drag-to-dismiss
-     * implementation in this package). Defaults to `false` to keep the default chrome
-     * aligned with the dialog look.
-     *
-     * @order 10
-     *
-     * @public
-     */
-    readonly dragHandle?: boolean;
 }
 
 /**

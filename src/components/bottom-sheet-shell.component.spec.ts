@@ -68,11 +68,6 @@ function createFixture(config: Partial<TbxMatBottomSheetConfig<unknown>>, footer
     return fixture;
 }
 
-/** Convenience wrapper used by drag-handle tests. */
-function createShell(config: Partial<TbxMatBottomSheetConfig<unknown>>): ComponentFixture<BottomSheetShellComponent> {
-    return createFixture(config);
-}
-
 function getBottomSheetRef(fixture: ComponentFixture<BottomSheetShellComponent>): MatBottomSheetRef<BottomSheetShellComponent> {
     return fixture.debugElement.injector.get(MatBottomSheetRef);
 }
@@ -994,33 +989,6 @@ describe('BottomSheetShellComponent', () => {
 
             const button = fixture.debugElement.query(By.css('.bottom-sheet-footer button'));
             expect(button.nativeElement.classList.contains('tbx-mat-bottom-sheet-btn-destructive')).toBe(false);
-        });
-    });
-
-    describe('drag handle', () => {
-        it('does not render the drag-handle pill when config.dragHandle is undefined', async () => {
-            const fixture = createShell({ title: 'No handle' });
-            await fixture.whenStable();
-
-            const handle = fixture.nativeElement.querySelector('.tbx-mat-bottom-sheet-drag-handle');
-            expect(handle).toBeNull();
-        });
-
-        it('does not render the drag-handle pill when config.dragHandle is false', async () => {
-            const fixture = createShell({ title: 'False handle', dragHandle: false });
-            await fixture.whenStable();
-
-            const handle = fixture.nativeElement.querySelector('.tbx-mat-bottom-sheet-drag-handle');
-            expect(handle).toBeNull();
-        });
-
-        it('renders a decorative drag-handle pill when config.dragHandle is true', async () => {
-            const fixture = createShell({ title: 'Has handle', dragHandle: true });
-            await fixture.whenStable();
-
-            const handle = fixture.nativeElement.querySelector('.tbx-mat-bottom-sheet-drag-handle');
-            expect(handle).not.toBeNull();
-            expect(handle?.getAttribute('aria-hidden')).toBe('true');
         });
     });
 });
