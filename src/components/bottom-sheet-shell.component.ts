@@ -39,6 +39,7 @@ export interface BottomSheetShellData {
  *
  * @remarks
  * Renders a consistent layout:
+ *   - Optional drag-handle pill above the header (when `config.dragHandle === true`)
  *   - Header: icon in circular container (optional), title (associated via
  *     aria-labelledby for accessibility), context badge (mat-chip, optional),
  *     subtitle (optional), close button — all vertically centered
@@ -99,6 +100,11 @@ export interface BottomSheetShellData {
         '[attr.aria-labelledby]': 'titleId',
     },
     template: `
+        <!-- ── Drag handle (decorative) ─────────────────────── -->
+        @if (config.dragHandle === true) {
+            <div class="tbx-mat-bottom-sheet-drag-handle" aria-hidden="true"></div>
+        }
+
         <!-- ── Header ───────────────────────────────────────── -->
         <header class="bottom-sheet-header">
             <div class="header-content">
@@ -228,6 +234,22 @@ export interface BottomSheetShellData {
         :host {
             --bottom-sheet-padding-inline: 1.25rem;
             display: block;
+        }
+
+        /* ── Drag handle ───────────────────────────────────── */
+
+        /* Decorative grabber pill rendered above the header to signal
+         * dismissibility. Centered horizontally with a small top inset
+         * so it sits clearly above the header content. The pill is
+         * non-interactive (aria-hidden="true") — drag-to-dismiss is not
+         * implemented in this package. */
+        .tbx-mat-bottom-sheet-drag-handle {
+            width: 2.5rem;
+            height: 0.25rem;
+            border-radius: 9999px;
+            background-color: currentColor;
+            opacity: 35%;
+            margin: 0.5rem auto 0;
         }
 
         /* ── Header ────────────────────────────────────────── */
