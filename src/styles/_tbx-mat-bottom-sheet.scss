@@ -1,0 +1,303 @@
+@use '@angular/material' as mat;
+@use '@teqbench/tbx-mat-severity-theme/styles/tbx-mat-severity-theme' as severity;
+
+/* ━━━ Bottom Sheet Color Tokens ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * Emits `--tbx-mat-bottom-sheet-<level>-background` and
+ * `--tbx-mat-bottom-sheet-<level>-text` custom properties for all six severity
+ * tiers (default, success, error, warning, information, help), each
+ * aliasing the corresponding `--tbx-mat-severity-<level>-*` token defined
+ * by `@teqbench/tbx-mat-severity-theme`.
+ *
+ * The shared theme package owns the actual color values (and the
+ * `.tbx-mat-severity-inverted` variant). Themes in consuming applications
+ * can override either the shared tokens (affects every severity-aware
+ * package) or the bottom-sheet-prefixed aliases (bottom sheets only) via
+ * `html[data-theme="id"]` blocks.
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+html {
+    @include severity.tbx-mat-severity-theme('tbx-mat-bottom-sheet');
+}
+
+/* ━━━ Action Button Opacity Tokens ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * Centralized opacity values for severity-driven action button variants.
+ * Mirrors the set used by `@teqbench/tbx-mat-banners` and
+ * `@teqbench/tbx-mat-notifications` so consumers can override globally
+ * without touching individual severity classes.
+ *
+ * The slight transparency differentiates action buttons from message text.
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+html {
+    --tbx-mat-bottom-sheet-action-text-opacity: 0.8;
+
+    --tbx-mat-bottom-sheet-action-filled-container-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
+    --tbx-mat-bottom-sheet-action-tonal-container-opacity: 0.55;
+
+    --tbx-mat-bottom-sheet-action-outlined-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
+    --tbx-mat-bottom-sheet-action-elevated-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
+    --tbx-mat-bottom-sheet-action-icon-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
+    --tbx-mat-bottom-sheet-close-icon-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
+
+    --tbx-mat-bottom-sheet-action-filled-hover-state-layer-opacity: 0.3;
+    --tbx-mat-bottom-sheet-action-tonal-hover-state-layer-opacity: var(--tbx-mat-bottom-sheet-action-filled-hover-state-layer-opacity);
+}
+
+/* ━━━ Bottom Sheet Panel Surface ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * MatBottomSheet wraps the rendered component in `.mat-bottom-sheet-container`.
+ * The `.tbx-mat-bottom-sheet-panel` class is applied to MatBottomSheet's
+ * overlay panel via `panelClass` by `TbxMatBottomSheetService`, and structural
+ * overrides target the container element inside.
+ *
+ * Severity color is applied to the entire bottom sheet surface — header, body,
+ * and footer all sit on the same severity background — mirroring how
+ * `tbx-mat-banners` and `tbx-mat-notifications` color their entire panel.
+ * The icon, title, body text, footer buttons, and form controls all
+ * inherit from the panel-level token overrides set by `_severity-panel`.
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.tbx-mat-bottom-sheet-panel .mat-bottom-sheet-container {
+    padding: 0;
+    border-radius: 1rem 1rem 0 0;
+}
+
+/* ━━━ Severity Panel Mixin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * Adapted from `tbx-mat-banners`/`tbx-mat-notifications` to bottom sheets.
+ * Applies the severity background to the bottom sheet surface (via Material's
+ * `bottom-sheet-overrides()` for `container-background-color`), sets the
+ * surface `color` to the on-severity token (so descendants pick it up via
+ * inheritance), and exposes Material control tokens for every button variant
+ * (text / filled / tonal / outlined / elevated), the icon button,
+ * checkbox, slide-toggle, radio, and button-toggle group — same shape
+ * as banners' `_severity-panel($bg, $text)`.
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@mixin _severity-panel($bg, $text) {
+    /* Expose the active severity tokens for shell-component consumers
+     * (icon, title-row badges, etc.) that read --tbx-mat-bottom-sheet-current-*. */
+    --tbx-mat-bottom-sheet-current-background: #{$bg};
+    --tbx-mat-bottom-sheet-current-text: #{$text};
+
+    /* ── Bottom sheet container background + text ──
+     *
+     * Material's MatBottomSheet colors the container via
+     * --mat-bottom-sheet-container-background-color. Override to the
+     * on-severity color so all content renders on the severity background —
+     * same as how `tbx-mat-banners` colors its label. */
+    @include mat.bottom-sheet-overrides(
+        (
+            container-background-color: $bg,
+            container-text-color: $text,
+        )
+    );
+
+    /* Surface `color` is set so generic descendants (severity icon,
+     * custom paragraph elements without their own color, etc.) pick up
+     * the on-severity color via standard CSS inheritance. */
+    .mat-bottom-sheet-container {
+        color: #{$text};
+    }
+
+    /* ── Divider (mat-divider) — keep visible against the colored panel ── */
+    --mat-divider-color: #{$text};
+
+    /* ── Icon button color tokens (used by .tbx-mat-bottom-sheet-close-icon-button) ── */
+    --tbx-mat-bottom-sheet-close-icon-color: color-mix(in srgb, #{$text} calc(var(--tbx-mat-bottom-sheet-close-icon-opacity) * 100%), transparent);
+    --tbx-mat-bottom-sheet-close-icon-state-layer-color: #{$text};
+
+    /* ── Text button ── */
+    --mat-button-text-label-text-color: color-mix(in srgb, #{$text} calc(var(--tbx-mat-bottom-sheet-action-text-opacity) * 100%), transparent);
+    --mat-button-text-state-layer-color: #{$text};
+    --mat-button-text-ripple-color: color-mix(in srgb, #{$text} calc(var(--mat-sys-pressed-state-layer-opacity) * 100%), transparent);
+
+    /* ── Filled button ── */
+    --mat-button-filled-container-color: color-mix(in srgb, #{$text} calc(var(--tbx-mat-bottom-sheet-action-filled-container-opacity) * 100%), transparent);
+    --mat-button-filled-label-text-color: #{$bg};
+    --mat-button-filled-state-layer-color: #{$bg};
+    --mat-button-filled-hover-state-layer-opacity: var(--tbx-mat-bottom-sheet-action-filled-hover-state-layer-opacity);
+    --mat-button-filled-ripple-color: color-mix(in srgb, #{$bg} calc(var(--mat-sys-pressed-state-layer-opacity) * 100%), transparent);
+
+    /* ── Tonal button ── */
+    --mat-button-tonal-container-color: color-mix(in srgb, #{$text} calc(var(--tbx-mat-bottom-sheet-action-tonal-container-opacity) * 100%), transparent);
+    --mat-button-tonal-label-text-color: #{$bg};
+    --mat-button-tonal-state-layer-color: #{$bg};
+    --mat-button-tonal-hover-state-layer-opacity: var(--tbx-mat-bottom-sheet-action-tonal-hover-state-layer-opacity);
+    --mat-button-tonal-ripple-color: color-mix(in srgb, #{$bg} calc(var(--mat-sys-pressed-state-layer-opacity) * 100%), transparent);
+
+    /* ── Outlined button ── */
+    --mat-button-outlined-label-text-color: color-mix(in srgb, #{$text} calc(var(--tbx-mat-bottom-sheet-action-outlined-opacity) * 100%), transparent);
+    --mat-button-outlined-outline-color: #{$text};
+    --mat-button-outlined-state-layer-color: #{$text};
+    --mat-button-outlined-ripple-color: color-mix(in srgb, #{$text} calc(var(--mat-sys-pressed-state-layer-opacity) * 100%), transparent);
+
+    /* ── Elevated (protected) button ── */
+    --mat-button-protected-label-text-color: color-mix(in srgb, #{$text} calc(var(--tbx-mat-bottom-sheet-action-elevated-opacity) * 100%), transparent);
+    --mat-button-protected-container-color: #{$bg};
+    --mat-button-protected-state-layer-color: #{$text};
+    --mat-button-protected-container-elevation-shadow: var(--mat-sys-level1);
+    --mat-button-protected-hover-container-elevation-shadow: var(--mat-sys-level2);
+    --mat-button-protected-focus-container-elevation-shadow: var(--mat-sys-level1);
+    --mat-button-protected-pressed-container-elevation-shadow: var(--mat-sys-level1);
+    --mat-button-protected-ripple-color: color-mix(in srgb, #{$text} calc(var(--mat-sys-pressed-state-layer-opacity) * 100%), transparent);
+
+    /* ── Checkbox ── */
+    --mat-checkbox-selected-checkmark-color: #{$bg};
+    --mat-checkbox-selected-focus-icon-color: #{$text};
+    --mat-checkbox-selected-hover-icon-color: #{$text};
+    --mat-checkbox-selected-icon-color: #{$text};
+    --mat-checkbox-selected-pressed-state-layer-color: #{$text};
+    --mat-checkbox-unselected-focus-icon-color: #{$text};
+    --mat-checkbox-unselected-hover-icon-color: #{$text};
+    --mat-checkbox-unselected-icon-color: #{$text};
+    --mat-checkbox-label-text-color: #{$text};
+
+    /* ── Slide toggle ── */
+    --mat-slide-toggle-label-text-color: #{$text};
+    --mat-slide-toggle-selected-track-color: #{$text};
+    --mat-slide-toggle-selected-hover-track-color: #{$text};
+    --mat-slide-toggle-selected-focus-track-color: #{$text};
+    --mat-slide-toggle-selected-pressed-track-color: #{$text};
+    --mat-slide-toggle-selected-handle-color: #{$bg};
+    --mat-slide-toggle-selected-hover-handle-color: #{$bg};
+    --mat-slide-toggle-selected-focus-handle-color: #{$bg};
+    --mat-slide-toggle-selected-pressed-handle-color: #{$bg};
+    --mat-slide-toggle-selected-icon-color: #{$text};
+    --mat-slide-toggle-unselected-track-color: color-mix(in srgb, #{$text} 30%, transparent);
+    --mat-slide-toggle-unselected-hover-track-color: color-mix(in srgb, #{$text} 40%, transparent);
+    --mat-slide-toggle-unselected-focus-track-color: color-mix(in srgb, #{$text} 30%, transparent);
+    --mat-slide-toggle-unselected-pressed-track-color: color-mix(in srgb, #{$text} 40%, transparent);
+    --mat-slide-toggle-unselected-handle-color: #{$text};
+    --mat-slide-toggle-unselected-hover-handle-color: #{$text};
+    --mat-slide-toggle-unselected-focus-handle-color: #{$text};
+    --mat-slide-toggle-unselected-pressed-handle-color: #{$text};
+    --mat-slide-toggle-unselected-icon-color: #{$bg};
+    --mat-slide-toggle-track-outline-color: color-mix(in srgb, #{$text} 50%, transparent);
+
+    /* ── Radio ── */
+    --mat-radio-checked-ripple-color: #{$text};
+    --mat-radio-ripple-color: #{$text};
+    --mat-radio-selected-icon-color: #{$text};
+    --mat-radio-selected-hover-icon-color: #{$text};
+    --mat-radio-selected-focus-icon-color: #{$text};
+    --mat-radio-selected-pressed-icon-color: #{$text};
+    --mat-radio-unselected-icon-color: #{$text};
+    --mat-radio-unselected-hover-icon-color: #{$text};
+    --mat-radio-unselected-focus-icon-color: #{$text};
+    --mat-radio-unselected-pressed-icon-color: #{$text};
+    --mat-radio-label-text-color: #{$text};
+
+    /* ── Button toggle group ── */
+    --mat-button-toggle-text-color: #{$text};
+    --mat-button-toggle-selected-state-text-color: #{$bg};
+    --mat-button-toggle-selected-state-background-color: #{$text};
+    --mat-button-toggle-divider-color: color-mix(in srgb, #{$text} 40%, transparent);
+    --mat-button-toggle-disabled-state-text-color: color-mix(in srgb, #{$text} 40%, transparent);
+    --mat-button-toggle-state-layer-color: #{$text};
+    --mat-button-toggle-hover-state-layer-opacity: 0.15;
+
+    /* ── Chip (used by context badge in the header) ── */
+    --mat-chip-label-text-color: color-mix(in srgb, #{$text} 50%, transparent);
+    --mat-chip-disabled-label-text-color: color-mix(in srgb, #{$text} 50%, transparent);
+    --mat-chip-disabled-container-color: color-mix(in srgb, #{$text} 18%, transparent);
+
+    /* ── Outlined form field (used by input bottom sheet content) ──
+     * Banners/notifications don't host form fields, so this set is
+     * bottom-sheet-specific. Uses Material's `mat.form-field-overrides()`
+     * mixin so the correct internal tokens are targeted regardless of
+     * Material's exact token naming. Idle-state outline and label are
+     * softened with color-mix so the field reads as a passive control
+     * until the user hovers or focuses it (then the outline becomes
+     * full $text). Validation error messages keep Material's default
+     * error color — on an Error severity bottom sheet those errors aren't
+     * usually rendered (the sheet itself is the error surface), and
+     * on other severities the default error color provides contrast. */
+    @include mat.form-field-overrides(
+        (
+            outlined-outline-color: color-mix(in srgb, #{$text} 50%, transparent),
+            outlined-hover-outline-color: #{$text},
+            outlined-focus-outline-color: #{$text},
+            outlined-disabled-outline-color: color-mix(in srgb, #{$text} 30%, transparent),
+            outlined-input-text-color: #{$text},
+            outlined-disabled-input-text-color: color-mix(in srgb, #{$text} 50%, transparent),
+            outlined-input-text-placeholder-color: color-mix(in srgb, #{$text} 50%, transparent),
+            outlined-label-text-color: color-mix(in srgb, #{$text} 70%, transparent),
+            outlined-hover-label-text-color: #{$text},
+            outlined-focus-label-text-color: #{$text},
+            outlined-disabled-label-text-color: color-mix(in srgb, #{$text} 50%, transparent),
+            outlined-caret-color: #{$text},
+            leading-icon-color: #{$text},
+            trailing-icon-color: #{$text},
+        )
+    );
+}
+
+.tbx-mat-bottom-sheet-panel-default {
+    @include _severity-panel(var(--tbx-mat-bottom-sheet-default-background), var(--tbx-mat-bottom-sheet-default-text));
+}
+
+.tbx-mat-bottom-sheet-panel-success {
+    @include _severity-panel(var(--tbx-mat-bottom-sheet-success-background), var(--tbx-mat-bottom-sheet-success-text));
+}
+
+.tbx-mat-bottom-sheet-panel-error {
+    @include _severity-panel(var(--tbx-mat-bottom-sheet-error-background), var(--tbx-mat-bottom-sheet-error-text));
+}
+
+.tbx-mat-bottom-sheet-panel-warning {
+    @include _severity-panel(var(--tbx-mat-bottom-sheet-warning-background), var(--tbx-mat-bottom-sheet-warning-text));
+}
+
+.tbx-mat-bottom-sheet-panel-information {
+    @include _severity-panel(var(--tbx-mat-bottom-sheet-information-background), var(--tbx-mat-bottom-sheet-information-text));
+}
+
+.tbx-mat-bottom-sheet-panel-help {
+    @include _severity-panel(var(--tbx-mat-bottom-sheet-help-background), var(--tbx-mat-bottom-sheet-help-text));
+}
+
+/* ━━━ Icon Button Class Overrides ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * Class-targeted rules applied to mat-mdc-icon-button instances so the
+ * close icon picks up the close-icon-color tokens emitted by the panel
+ * mixin. Mirrors the pattern in
+ * `tbx-mat-banners`/`tbx-mat-notifications`.
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.tbx-mat-bottom-sheet-close-icon-button.mat-mdc-icon-button {
+    --mat-icon-button-icon-color: var(--tbx-mat-bottom-sheet-close-icon-color);
+    --mat-icon-button-state-layer-color: var(--tbx-mat-bottom-sheet-close-icon-state-layer-color);
+}
+
+/* ━━━ Destructive Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *
+ * Bottom-sheet extension: a footer button with `emphasis: 'destructive'`
+ * renders with the Error severity tokens so it reads as destructive
+ * regardless of the bottom sheet's own severity (e.g., a "Delete" button
+ * inside a Help bottom sheet still looks destructive). All other footer
+ * buttons inherit their Material variant tokens from the panel mixin
+ * above.
+ *
+ * Excluded when the bottom sheet itself is Error severity — on an Error panel
+ * the override's `filled-container-color: --tbx-mat-bottom-sheet-error-background`
+ * resolves to the same value as the surface background, making the
+ * button invisible. The `:not(.tbx-mat-bottom-sheet-panel-error)` guard lets
+ * the destructive button fall through to the panel mixin's filled
+ * tokens on Error bottom sheets, which already render the Error-theme
+ * styling correctly. The fall-through works under
+ * `.tbx-mat-severity-inverted` too because both sides of the inversion
+ * collide identically when the bottom sheet severity matches the destructive
+ * intent.
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.tbx-mat-bottom-sheet-panel:not(.tbx-mat-bottom-sheet-panel-error) .tbx-mat-bottom-sheet-btn-destructive {
+    @include mat.button-overrides(
+        (
+            filled-container-color: var(--tbx-mat-bottom-sheet-error-background),
+            filled-label-text-color: var(--tbx-mat-bottom-sheet-error-text),
+        )
+    );
+}
