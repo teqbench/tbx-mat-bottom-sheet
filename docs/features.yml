@@ -1,0 +1,7 @@
+# Short, scannable feature bullets rendered in the README "At a glance" section.
+# Each entry: one short noun phrase, one-line explanation.
+# TODO: Replace placeholder entries with the package's actual feature highlights.
+- name: TODO feature
+  summary: TODO one-line explanation.
+- name: TODO feature
+  summary: TODO one-line explanation.

@@ -1,0 +1,3 @@
+[submodule ".shared-skills"]
+	path = .shared-skills
+	url = https://github.com/teqbench/teqbench.dev.shared-skills.git
