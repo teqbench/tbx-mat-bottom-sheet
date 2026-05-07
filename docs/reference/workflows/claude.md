@@ -16,11 +16,14 @@ The [Claude Code ↗](https://github.com/anthropics/claude-code) workflow provid
 
 ## Triggers
 
-| Event                                   | Condition                       |
-| --------------------------------------- | ------------------------------- |
-| `issue_comment` (created)               | Comment body contains `@claude` |
-| `pull_request_review_comment` (created) | Comment body contains `@claude` |
-| `issues` (opened)                       | Issue body contains `@claude`   |
+<dl>
+    <dt><code>issue_comment</code> (created)</dt>
+    <dd>Comment body contains <code>@claude</code>.</dd>
+    <dt><code>pull_request_review_comment</code> (created)</dt>
+    <dd>Comment body contains <code>@claude</code>.</dd>
+    <dt><code>issues</code> (opened)</dt>
+    <dd>Issue body contains <code>@claude</code>.</dd>
+</dl>
 
 ---
 
@@ -37,11 +40,14 @@ Per-issue/PR concurrency: only one Claude run per issue or PR at a time.
 
 ## Secrets Used
 
-| Secret              | Purpose                                                                              |
-| ------------------- | ------------------------------------------------------------------------------------ |
-| `APP_ID`            | GitHub App ID for generating a bot token                                             |
-| `APP_PRIVATE_KEY`   | GitHub App private key                                                               |
-| `ANTHROPIC_API_KEY` | Authenticates with the [Anthropic API ↗](https://docs.anthropic.com/en/api/overview) |
+<dl>
+    <dt><code>APP_ID</code></dt>
+    <dd>GitHub App ID for generating a bot token.</dd>
+    <dt><code>APP_PRIVATE_KEY</code></dt>
+    <dd>GitHub App private key.</dd>
+    <dt><code>ANTHROPIC_API_KEY</code></dt>
+    <dd>Authenticates with the <a href="https://docs.anthropic.com/en/api/overview">Anthropic API ↗</a>.</dd>
+</dl>
 
 ---
 
