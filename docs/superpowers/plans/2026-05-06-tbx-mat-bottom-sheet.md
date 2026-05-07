@@ -16,19 +16,19 @@
 
 Apply these renames whenever a file is copied from `tbx-mat-dialogs`:
 
-| From | To |
-| --- | --- |
-| `@teqbench/tbx-mat-dialogs` (in code/imports/docs) | `@teqbench/tbx-mat-bottom-sheet` |
-| `TbxMatDialog` (PascalCase prefix) | `TbxMatBottomSheet` |
-| `tbxMatDialog` (camelCase prefix) | `tbxMatBottomSheet` |
-| `TBX_MAT_DIALOG_` (UPPER_SNAKE prefix) | `TBX_MAT_BOTTOM_SHEET_` |
-| `tbx-mat-dialog` (kebab-case prefix in selectors / panel classes / SCSS) | `tbx-mat-bottom-sheet` |
-| `dialog` (file/directory names) | `bottom-sheet` |
-| `Dialog` (in prose, comments, docs, README) | `BottomSheet` (TitleCase) or `bottom sheet` (prose) |
-| `MatDialog`, `MatDialogRef`, `MAT_DIALOG_DATA`, `MatDialogConfig` | `MatBottomSheet`, `MatBottomSheetRef`, `MAT_BOTTOM_SHEET_DATA`, `MatBottomSheetConfig` |
-| `afterClosed()` | `afterDismissed()` |
-| `dialogRef.close(...)` | `ref.dismiss(...)` |
-| Module path `@angular/material/dialog` | `@angular/material/bottom-sheet` |
+| From                                                                     | To                                                                                     |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| `@teqbench/tbx-mat-dialogs` (in code/imports/docs)                       | `@teqbench/tbx-mat-bottom-sheet`                                                       |
+| `TbxMatDialog` (PascalCase prefix)                                       | `TbxMatBottomSheet`                                                                    |
+| `tbxMatDialog` (camelCase prefix)                                        | `tbxMatBottomSheet`                                                                    |
+| `TBX_MAT_DIALOG_` (UPPER_SNAKE prefix)                                   | `TBX_MAT_BOTTOM_SHEET_`                                                                |
+| `tbx-mat-dialog` (kebab-case prefix in selectors / panel classes / SCSS) | `tbx-mat-bottom-sheet`                                                                 |
+| `dialog` (file/directory names)                                          | `bottom-sheet`                                                                         |
+| `Dialog` (in prose, comments, docs, README)                              | `BottomSheet` (TitleCase) or `bottom sheet` (prose)                                    |
+| `MatDialog`, `MatDialogRef`, `MAT_DIALOG_DATA`, `MatDialogConfig`        | `MatBottomSheet`, `MatBottomSheetRef`, `MAT_BOTTOM_SHEET_DATA`, `MatBottomSheetConfig` |
+| `afterClosed()`                                                          | `afterDismissed()`                                                                     |
+| `dialogRef.close(...)`                                                   | `ref.dismiss(...)`                                                                     |
+| Module path `@angular/material/dialog`                                   | `@angular/material/bottom-sheet`                                                       |
 
 **Surgical adjustments** (NOT mechanical — these alter behavior):
 
@@ -44,6 +44,7 @@ Apply these renames whenever a file is copied from `tbx-mat-dialogs`:
 ### Task 1: Update `package.json` with the package name, description, scripts, peer deps, dev deps
 
 **Files:**
+
 - Modify: `package.json`
 
 - [ ] **Step 1: Replace the file contents**
@@ -52,90 +53,88 @@ Replace the file with the following (storybook scripts are intentionally absent 
 
 ```json
 {
-  "name": "@teqbench/tbx-mat-bottom-sheet",
-  "version": "0.7.0",
-  "description": "Opinionated Angular bottom sheet service built on Material's MatBottomSheet. Severity-leveled methods (success / error / warning / information / help / default) plus dialog-style UX patterns (confirm / input). Returns Promise<TbxMatBottomSheetResult<T, F>>. Severity colors via @teqbench/tbx-mat-severity-theme; pluggable icons via TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG. Optional drag-handle affordance. Angular 21+.",
-  "type": "module",
-  "exports": {
-    "./styles/*": {
-      "sass": "./styles/_*.scss"
+    "name": "@teqbench/tbx-mat-bottom-sheet",
+    "version": "0.7.0",
+    "description": "Opinionated Angular bottom sheet service built on Material's MatBottomSheet. Severity-leveled methods (success / error / warning / information / help / default) plus dialog-style UX patterns (confirm / input). Returns Promise<TbxMatBottomSheetResult<T, F>>. Severity colors via @teqbench/tbx-mat-severity-theme; pluggable icons via TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG. Optional drag-handle affordance. Angular 21+.",
+    "type": "module",
+    "exports": {
+        "./styles/*": {
+            "sass": "./styles/_*.scss"
+        }
+    },
+    "license": "AGPL-3.0-only",
+    "engines": {
+        "node": ">=24.0.0"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
+    "scripts": {
+        "build": "ng-packagr -p ng-package.json -c tsconfig.build.json",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint .",
+        "test": "vitest run",
+        "test:coverage": "vitest run --coverage",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "prepare": "husky"
+    },
+    "devDependenciesPinned": {
+        "//": [
+            "typescript-eslint is pinned without ^ because patch releases have historically introduced",
+            "breaking rule changes. Pin to a known-good version and update deliberately after testing.",
+            "@types/node is pinned to the major version matching the Node runtime (24). Auto-updating",
+            "to 25 pulls in type definitions for APIs not available on the target runtime, which can",
+            "mask compatibility issues. Re-evaluate when the project moves to the next even-numbered Node LTS."
+        ]
+    },
+    "peerDependencies": {
+        "@angular/cdk": ">=21.0.0",
+        "@angular/core": ">=21.0.0",
+        "@angular/material": ">=21.0.0",
+        "@teqbench/tbx-mat-icons": ">=4.0.0",
+        "@teqbench/tbx-mat-severity-theme": ">=8.0.0"
+    },
+    "devDependencies": {
+        "@analogjs/vite-plugin-angular": "^2.3.1",
+        "@analogjs/vitest-angular": "^2.3.1",
+        "@angular/animations": "^21.2.6",
+        "@angular/build": "^21.2.4",
+        "@angular/cdk": "^21.2.4",
+        "@angular/common": "^21.2.6",
+        "@angular/compiler": "^21.2.6",
+        "@angular/compiler-cli": "^21.2.6",
+        "@angular/core": "^21.2.6",
+        "@angular/forms": "^21.2.6",
+        "@angular/material": "^21.2.4",
+        "@angular/platform-browser": "^21.2.6",
+        "@angular/platform-browser-dynamic": "^21.2.6",
+        "@teqbench/tbx-mat-icons": "^4.2.0",
+        "@teqbench/tbx-mat-severity-theme": "^8.0.2",
+        "@types/node": "~24.12.0",
+        "@vitest/coverage-v8": "^4.1.1",
+        "angular-eslint": "^21.3.1",
+        "eslint": "^9.39.2",
+        "eslint-plugin-tsdoc": "^0.5.2",
+        "husky": "^9.1.7",
+        "jsdom": "^29.0.1",
+        "lint-staged": "^16.3.3",
+        "ng-packagr": "^21.2.2",
+        "prettier": "^3.8.1",
+        "typescript": "~5.9.0",
+        "typescript-eslint": "8.58.0",
+        "vitest": "^4.0.18",
+        "zone.js": "^0.16.1"
+    },
+    "//overrides": "Pin vite to 7.3.2 — @angular/build bundles vite internally but does not constrain the version tightly enough; 7.4+ causes build failures with ng-packagr. Remove when @angular/build supports vite 7.4+.",
+    "overrides": {
+        "@angular/build": {
+            "vite": "7.3.2"
+        }
+    },
+    "lint-staged": {
+        "*.{ts,json,md,yml,yaml,scss,css}": ["prettier --write"]
     }
-  },
-  "license": "AGPL-3.0-only",
-  "engines": {
-    "node": ">=24.0.0"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
-  "scripts": {
-    "build": "ng-packagr -p ng-package.json -c tsconfig.build.json",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "prepare": "husky"
-  },
-  "devDependenciesPinned": {
-    "//": [
-      "typescript-eslint is pinned without ^ because patch releases have historically introduced",
-      "breaking rule changes. Pin to a known-good version and update deliberately after testing.",
-      "@types/node is pinned to the major version matching the Node runtime (24). Auto-updating",
-      "to 25 pulls in type definitions for APIs not available on the target runtime, which can",
-      "mask compatibility issues. Re-evaluate when the project moves to the next even-numbered Node LTS."
-    ]
-  },
-  "peerDependencies": {
-    "@angular/cdk": ">=21.0.0",
-    "@angular/core": ">=21.0.0",
-    "@angular/material": ">=21.0.0",
-    "@teqbench/tbx-mat-icons": ">=4.0.0",
-    "@teqbench/tbx-mat-severity-theme": ">=8.0.0"
-  },
-  "devDependencies": {
-    "@analogjs/vite-plugin-angular": "^2.3.1",
-    "@analogjs/vitest-angular": "^2.3.1",
-    "@angular/animations": "^21.2.6",
-    "@angular/build": "^21.2.4",
-    "@angular/cdk": "^21.2.4",
-    "@angular/common": "^21.2.6",
-    "@angular/compiler": "^21.2.6",
-    "@angular/compiler-cli": "^21.2.6",
-    "@angular/core": "^21.2.6",
-    "@angular/forms": "^21.2.6",
-    "@angular/material": "^21.2.4",
-    "@angular/platform-browser": "^21.2.6",
-    "@angular/platform-browser-dynamic": "^21.2.6",
-    "@teqbench/tbx-mat-icons": "^4.2.0",
-    "@teqbench/tbx-mat-severity-theme": "^8.0.2",
-    "@types/node": "~24.12.0",
-    "@vitest/coverage-v8": "^4.1.1",
-    "angular-eslint": "^21.3.1",
-    "eslint": "^9.39.2",
-    "eslint-plugin-tsdoc": "^0.5.2",
-    "husky": "^9.1.7",
-    "jsdom": "^29.0.1",
-    "lint-staged": "^16.3.3",
-    "ng-packagr": "^21.2.2",
-    "prettier": "^3.8.1",
-    "typescript": "~5.9.0",
-    "typescript-eslint": "8.58.0",
-    "vitest": "^4.0.18",
-    "zone.js": "^0.16.1"
-  },
-  "//overrides": "Pin vite to 7.3.2 — @angular/build bundles vite internally but does not constrain the version tightly enough; 7.4+ causes build failures with ng-packagr. Remove when @angular/build supports vite 7.4+.",
-  "overrides": {
-    "@angular/build": {
-      "vite": "7.3.2"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,json,md,yml,yaml,scss,css}": [
-      "prettier --write"
-    ]
-  }
 }
 ```
 
@@ -160,6 +159,7 @@ Mirrors tbx-mat-dialogs except for storybook scripts/devDeps."
 ### Task 2: Update `release-please-config.json`
 
 **Files:**
+
 - Modify: `release-please-config.json`
 
 - [ ] **Step 1: Read the current file**
@@ -186,30 +186,31 @@ git commit -m "chore: set release-please package name to @teqbench/tbx-mat-botto
 ### Task 3: Update `ng-package.json` to publish styles and docs as assets
 
 **Files:**
+
 - Modify: `ng-package.json`
 
 - [ ] **Step 1: Replace the file**
 
 ```json
 {
-  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-  "lib": {
-    "entryFile": "src/index.ts"
-  },
-  "dest": "dist",
-  "assets": [
-    "CHANGELOG.md",
-    {
-      "input": "src/styles",
-      "glob": "**/*",
-      "output": "styles"
+    "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+    "lib": {
+        "entryFile": "src/index.ts"
     },
-    {
-      "input": "docs",
-      "glob": "*.{md,yml}",
-      "output": "docs"
-    }
-  ]
+    "dest": "dist",
+    "assets": [
+        "CHANGELOG.md",
+        {
+            "input": "src/styles",
+            "glob": "**/*",
+            "output": "styles"
+        },
+        {
+            "input": "docs",
+            "glob": "*.{md,yml}",
+            "output": "docs"
+        }
+    ]
 }
 ```
 
@@ -225,6 +226,7 @@ git commit -m "build: publish src/styles and docs/*.{md,yml} as ng-packagr asset
 ### Task 4: Update `vitest.config.ts` to support Angular and apply per-file coverage thresholds
 
 **Files:**
+
 - Modify: `vitest.config.ts`
 
 - [ ] **Step 1: Replace the file with the dialog package's version**
@@ -243,6 +245,7 @@ git commit -m "test: configure Vitest for Angular + jsdom with per-file coverage
 ### Task 5: Update `eslint.config.js` to use Angular ESLint + tsdoc/syntax + selector prefix `tbx`
 
 **Files:**
+
 - Modify: `eslint.config.js`
 
 - [ ] **Step 1: Replace with the dialog package's eslint config**
@@ -261,6 +264,7 @@ git commit -m "chore: adopt Angular ESLint + typescript-eslint + tsdoc/syntax fl
 ### Task 6: Add `tsconfig.spec.json` for Vitest to compile spec files
 
 **Files:**
+
 - Create: `tsconfig.spec.json`
 
 - [ ] **Step 1: Read the dialog package's spec tsconfig**
@@ -279,6 +283,7 @@ git commit -m "test: add tsconfig.spec.json scoped to specs and test-setup"
 ### Task 7: Verify `tsconfig.json`, `tsconfig.build.json`, `tsdoc.json`, `.prettierrc`, `.editorconfig` match the dialog package
 
 **Files:**
+
 - Modify (only if drift): `tsconfig.json`, `tsconfig.build.json`, `tsdoc.json`, `.prettierrc`, `.editorconfig`
 
 - [ ] **Step 1: Diff each file vs the dialog package**
@@ -308,6 +313,7 @@ git commit -m "chore: align tsconfig / tsdoc / prettier / editorconfig with tbx-
 ### Task 8: Create `src/test-setup.ts`
 
 **Files:**
+
 - Create: `src/test-setup.ts`
 
 - [ ] **Step 1: Read the dialog package's test setup and copy verbatim**
@@ -330,6 +336,7 @@ git commit -m "test: add Angular Vitest test-setup"
 ### Task 9: Remove the template `greet` files
 
 **Files:**
+
 - Delete: `src/greet.ts`, `src/greet.spec.ts`
 - Modify: `src/index.ts` (remove the export)
 
@@ -356,6 +363,7 @@ This will be filled in fully in Task 25; for now, leave a single line:
 ```bash
 npm run typecheck && npm test
 ```
+
 Expected: typecheck passes; vitest reports "no tests" (acceptable for now).
 
 - [ ] **Step 5: Commit**
@@ -374,6 +382,7 @@ These are pure-TypeScript files (no Angular runtime). Copy each from the dialog 
 ### Task 10: Create the dismiss-reason enum
 
 **Files:**
+
 - Create: `src/enums/bottom-sheet-dismiss-reason.enum.ts`
 
 - [ ] **Step 1: Read `src/enums/dialog-dismiss-reason.enum.ts` from the dialog package**
@@ -387,6 +396,7 @@ Rename `TbxMatDialogDismissReason` → `TbxMatBottomSheetDismissReason`, `Dialog
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 4: Commit**
@@ -401,6 +411,7 @@ git commit -m "feat: add TbxMatBottomSheetDismissReason enum"
 ### Task 11: Create the footer-item interfaces
 
 **Files:**
+
 - Create: `src/models/bottom-sheet-footer.model.ts`
 
 - [ ] **Step 1: Read `src/models/dialog-footer.model.ts` from the dialog package**
@@ -414,6 +425,7 @@ All `TbxMatDialogFooter*` interfaces → `TbxMatBottomSheetFooter*`. References 
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 4: Commit**
@@ -428,6 +440,7 @@ git commit -m "feat: add footer-item interfaces (button, checkbox, toggle, radio
 ### Task 12: Create the resolved-icon (internal) model
 
 **Files:**
+
 - Create: `src/models/resolved-icon.model.ts`
 
 - [ ] **Step 1: Copy from `src/models/resolved-icon.model.ts` in the dialog package**
@@ -439,6 +452,7 @@ This file is internal (`@internal` tag). No prefix renames likely needed inside 
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 3: Commit**
@@ -453,6 +467,7 @@ git commit -m "feat: add internal ResolvedIcon model"
 ### Task 13: Create the config / result / data interfaces — drop sizing fields
 
 **Files:**
+
 - Create: `src/models/bottom-sheet.model.ts`
 
 This is the file with the surgical adjustments.
@@ -462,6 +477,7 @@ This is the file with the surgical adjustments.
 - [ ] **Step 2: Apply the rename map and the surgical adjustments**
 
 For `TbxMatBottomSheetConfig<T = void>`:
+
 - Rename per the global rename map.
 - **REMOVE** these fields entirely (interface property + TSDoc): `width`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`.
 - **ADD** `dragHandle?: boolean` with TSDoc:
@@ -490,6 +506,7 @@ For `TbxMatBottomSheetResult<T, F>`, `TbxMatBottomSheetData<T>`: rename only.
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 4: Commit**
@@ -507,6 +524,7 @@ and introduces dragHandle?: boolean (default false) for the grabber-pill afforda
 ### Task 14: Create the provider-config interface
 
 **Files:**
+
 - Create: `src/models/bottom-sheet-provider-config.model.ts`
 
 - [ ] **Step 1: Read `src/models/dialog-provider-config.model.ts` from the dialog package**
@@ -520,6 +538,7 @@ and introduces dragHandle?: boolean (default false) for the grabber-pill afforda
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 4: Commit**
@@ -534,6 +553,7 @@ git commit -m "feat: add provider-config model"
 ### Task 15: Create the type aliases
 
 **Files:**
+
 - Create: `src/types/bottom-sheet-config-override.type.ts`
 - Create: `src/types/bottom-sheet-footer-control.type.ts`
 - Create: `src/types/bottom-sheet-icon-resolver.type.ts`
@@ -547,6 +567,7 @@ Apply the rename map. The `TbxMatBottomSheetConfigArgs<T>` partial-omit type mus
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 3: Commit**
@@ -561,6 +582,7 @@ git commit -m "feat: add config-args / footer-control / icon-resolver type alias
 ### Task 16: Create the provider-config injection token
 
 **Files:**
+
 - Create: `src/tokens/bottom-sheet-provider-config.token.ts`
 
 - [ ] **Step 1: Read `src/tokens/dialog-provider-config.token.ts` from the dialog package**
@@ -574,6 +596,7 @@ Constant name: `TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG`. `InjectionToken` descript
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 4: Commit**
@@ -588,6 +611,7 @@ git commit -m "feat: add TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG injection token"
 ### Task 17: Create the constants file (button presets) — drop default-width constant
 
 **Files:**
+
 - Create: `src/constants/bottom-sheet.constants.ts`
 
 - [ ] **Step 1: Read `src/constants/dialog.constants.ts` from the dialog package**
@@ -602,6 +626,7 @@ git commit -m "feat: add TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG injection token"
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 4: Commit**
@@ -618,6 +643,7 @@ git commit -m "feat: add OK / OK_CANCEL / YES_NO / YES_NO_CANCEL button presets"
 ### Task 18: Severity font-icon service + spec
 
 **Files:**
+
 - Create: `src/services/bottom-sheet-severity-font-icon.service.ts`
 - Create: `src/services/bottom-sheet-severity-font-icon.service.spec.ts`
 
@@ -634,6 +660,7 @@ Read `src/services/dialog-severity-font-icon.service.spec.ts`. Apply the rename 
 ```bash
 npx vitest run src/services/bottom-sheet-severity-font-icon.service.spec.ts
 ```
+
 Expected: all tests pass.
 
 - [ ] **Step 4: Commit**
@@ -648,6 +675,7 @@ git commit -m "feat: add severity font-icon resolver service + spec"
 ### Task 19: Severity SVG-icon service + spec
 
 **Files:**
+
 - Create: `src/services/bottom-sheet-severity-svg-icon.service.ts`
 - Create: `src/services/bottom-sheet-severity-svg-icon.service.spec.ts`
 
@@ -660,6 +688,7 @@ git commit -m "feat: add severity font-icon resolver service + spec"
 ```bash
 npx vitest run src/services/bottom-sheet-severity-svg-icon.service.spec.ts
 ```
+
 Expected: all tests pass.
 
 - [ ] **Step 4: Commit**
@@ -674,6 +703,7 @@ git commit -m "feat: add severity SVG-icon resolver service + spec"
 ### Task 20: Close font-icon service + spec
 
 **Files:**
+
 - Create: `src/services/bottom-sheet-close-font-icon.service.ts`
 - Create: `src/services/bottom-sheet-close-font-icon.service.spec.ts`
 
@@ -688,6 +718,7 @@ The default close-button `aria-label` text must change: `"Close dialog"` → `"C
 ```bash
 npx vitest run src/services/bottom-sheet-close-font-icon.service.spec.ts
 ```
+
 Expected: all tests pass.
 
 - [ ] **Step 4: Commit**
@@ -706,6 +737,7 @@ The shell is the largest single piece (~1000 LOC). It is also where the drag han
 ### Task 21: Create the shell component (without drag handle)
 
 **Files:**
+
 - Create: `src/components/bottom-sheet-shell.component.ts`
 
 - [ ] **Step 1: Read `src/components/dialog-shell.component.ts` from the dialog package**
@@ -730,6 +762,7 @@ The shell is the largest single piece (~1000 LOC). It is also where the drag han
 ```bash
 npm run typecheck
 ```
+
 Expected: pass. If `MatDialogTitle` / `MatDialogContent` directives have no bottom-sheet equivalents and the dialog template used them, replace with semantic HTML (`<h2 id="...">`, plain `<div>`s) and ensure `aria-labelledby` still resolves.
 
 - [ ] **Step 5: Commit**
@@ -744,6 +777,7 @@ git commit -m "feat: add BottomSheetShellComponent (header + body + footer chrom
 ### Task 22: Add drag-handle conditional rendering — write the failing test first
 
 **Files:**
+
 - Create: `src/components/bottom-sheet-shell.component.spec.ts`
 
 - [ ] **Step 1: Read `src/components/dialog-shell.component.spec.ts` from the dialog package** as a starting template, apply the rename map, and write to the bottom-sheet path. **Do not yet add drag-handle test cases** — leave the file as the renamed dialog tests.
@@ -753,6 +787,7 @@ git commit -m "feat: add BottomSheetShellComponent (header + body + footer chrom
 ```bash
 npx vitest run src/components/bottom-sheet-shell.component.spec.ts
 ```
+
 Expected: all tests pass (cloned from working dialog tests).
 
 - [ ] **Step 3: Now write a failing test for the drag-handle behavior**
@@ -795,6 +830,7 @@ describe('drag handle', () => {
 ```bash
 npx vitest run src/components/bottom-sheet-shell.component.spec.ts -t "drag handle"
 ```
+
 Expected: the third test fails ("element is null"); the first two may already pass since the element is absent everywhere.
 
 - [ ] **Step 5: Implement the drag handle in the shell template**
@@ -812,6 +848,7 @@ In `bottom-sheet-shell.component.ts`, add to the very top of the component templ
 ```bash
 npx vitest run src/components/bottom-sheet-shell.component.spec.ts -t "drag handle"
 ```
+
 Expected: all three tests pass.
 
 - [ ] **Step 7: Run the full shell spec**
@@ -819,6 +856,7 @@ Expected: all three tests pass.
 ```bash
 npx vitest run src/components/bottom-sheet-shell.component.spec.ts
 ```
+
 Expected: all tests pass.
 
 - [ ] **Step 8: Commit**
@@ -835,6 +873,7 @@ git commit -m "feat: render drag-handle pill above header when config.dragHandle
 ### Task 23: Create `TbxMatBottomSheetService`
 
 **Files:**
+
 - Create: `src/services/bottom-sheet.service.ts`
 
 - [ ] **Step 1: Read `src/services/dialog.service.ts` from the dialog package**
@@ -842,6 +881,7 @@ git commit -m "feat: render drag-handle pill above header when config.dragHandle
 - [ ] **Step 2: Apply the global rename map**
 
 Including:
+
 - `TbxMatDialogService` → `TbxMatBottomSheetService`.
 - `MatDialog` (injected) → `MatBottomSheet`.
 - `MatDialogConfig` → `MatBottomSheetConfig`.
@@ -860,6 +900,7 @@ Including:
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 5: Commit**
@@ -874,6 +915,7 @@ git commit -m "feat: add TbxMatBottomSheetService with show / severity / confirm
 ### Task 24: Create the service spec
 
 **Files:**
+
 - Create: `src/services/bottom-sheet.service.spec.ts`
 
 - [ ] **Step 1: Read `src/services/dialog.service.spec.ts` from the dialog package**
@@ -881,6 +923,7 @@ git commit -m "feat: add TbxMatBottomSheetService with show / severity / confirm
 - [ ] **Step 2: Apply the global rename map and the sizing-drop adjustment**
 
 In the spec:
+
 - All `TbxMatDialog*` and `MatDialog*` references → bottom-sheet versions.
 - `afterClosed$` → `afterDismissed$` (and adjust the mocked `MatBottomSheetRef.afterDismissed()` returning the subject).
 - **REMOVE any test cases that exercise `width`, `minWidth`, `maxWidth`, `minHeight`, `maxHeight`** — these fields don't exist anymore and tests for them would fail.
@@ -908,6 +951,7 @@ it('does not pass any width or height keys to MatBottomSheet.open()', async () =
 ```bash
 npx vitest run src/services/bottom-sheet.service.spec.ts
 ```
+
 Expected: all tests pass.
 
 - [ ] **Step 5: Commit**
@@ -924,6 +968,7 @@ git commit -m "test: add service spec covering all 9 methods, dismissal handling
 ### Task 25: Create the SCSS entry partial
 
 **Files:**
+
 - Create: `src/styles/_tbx-mat-bottom-sheet.scss`
 
 - [ ] **Step 1: Read `src/styles/_tbx-mat-dialogs.scss` from the dialog package** (and any partials it `@use`s)
@@ -963,6 +1008,7 @@ git commit -m "feat(styles): add bottom-sheet panel classes and drag-handle pill
 ### Task 26: Update `src/index.ts` with the full barrel + `@packageDocumentation`
 
 **Files:**
+
 - Modify: `src/index.ts`
 
 - [ ] **Step 1: Read `src/index.ts` from the dialog package**
@@ -1009,7 +1055,11 @@ export type { TbxMatBottomSheetConfigArgs } from './types/bottom-sheet-config-ov
 export type { TbxMatBottomSheetIconResolver } from './types/bottom-sheet-icon-resolver.type';
 
 // Models
-export type { TbxMatBottomSheetResult, TbxMatBottomSheetConfig, TbxMatBottomSheetData } from './models/bottom-sheet.model';
+export type {
+    TbxMatBottomSheetResult,
+    TbxMatBottomSheetConfig,
+    TbxMatBottomSheetData,
+} from './models/bottom-sheet.model';
 export type { TbxMatBottomSheetProviderConfig } from './models/bottom-sheet-provider-config.model';
 export type {
     TbxMatBottomSheetFooterItem,
@@ -1045,6 +1095,7 @@ export { TbxMatBottomSheetCloseFontIconService } from './services/bottom-sheet-c
 ```bash
 npm run lint && npm run typecheck && npm test
 ```
+
 Expected: all pass.
 
 - [ ] **Step 4: Commit**
@@ -1061,6 +1112,7 @@ git commit -m "feat: expose public API via src/index.ts barrel"
 ### Task 27: Write `docs/overview.md`
 
 **Files:**
+
 - Modify: `docs/overview.md`
 
 - [ ] **Step 1: Read `docs/overview.md` from the dialog package**
@@ -1083,6 +1135,7 @@ git commit -m "docs: write package overview"
 ### Task 28: Write `docs/concepts.yml`, `docs/features.yml`, `docs/related.yml`
 
 **Files:**
+
 - Modify: `docs/concepts.yml`
 - Modify: `docs/features.yml`
 - Create: `docs/related.yml`
@@ -1107,6 +1160,7 @@ git commit -m "docs: write concepts, features, and related-packages docs"
 ### Task 29: Write `docs/accessibility.md`
 
 **Files:**
+
 - Modify: `docs/accessibility.md`
 
 - [ ] **Step 1: Read from the dialog package and apply the rename map**
@@ -1127,6 +1181,7 @@ git commit -m "docs: write accessibility notes"
 ### Task 30: Write per-pipeline workflow docs
 
 **Files:**
+
 - Create: `docs/reference/workflows/ci.md`
 - Create: `docs/reference/workflows/release.md`
 - Create: `docs/reference/workflows/sync.md`
@@ -1147,6 +1202,7 @@ git commit -m "docs: add per-pipeline workflow reference docs"
 ### Task 31: Write the README
 
 **Files:**
+
 - Modify: `README.md`
 
 - [ ] **Step 1: Read `README.md` from the dialog package**
@@ -1173,6 +1229,7 @@ git commit -m "docs: write README"
 ### Task 32: Verify each workflow file matches the dialog package's caller workflow
 
 **Files:**
+
 - Modify (if drift): `.github/workflows/ci.yml`, `release.yml`, `sync.yml`, `dep-compat-check.yml`, `claude.yml`
 - Create (if missing): `.github/workflows/docs-deploy.yml`
 
@@ -1210,6 +1267,7 @@ git commit -m "ci: align workflow callers with tbx-mat-dialogs (add docs-deploy 
 ```bash
 npm run format:check
 ```
+
 Expected: pass.
 
 - [ ] **Step 2: Lint**
@@ -1217,6 +1275,7 @@ Expected: pass.
 ```bash
 npm run lint
 ```
+
 Expected: zero errors, zero warnings.
 
 - [ ] **Step 3: Typecheck**
@@ -1224,6 +1283,7 @@ Expected: zero errors, zero warnings.
 ```bash
 npm run typecheck
 ```
+
 Expected: pass.
 
 - [ ] **Step 4: Unit tests with coverage**
@@ -1231,6 +1291,7 @@ Expected: pass.
 ```bash
 npm run test:coverage
 ```
+
 Expected: all tests pass; coverage thresholds met (80 / 80 / 80 / 75 per file).
 
 - [ ] **Step 5: Build the package**
@@ -1238,6 +1299,7 @@ Expected: all tests pass; coverage thresholds met (80 / 80 / 80 / 75 per file).
 ```bash
 npm run build
 ```
+
 Expected: `dist/` produced; no warnings about unresolved imports; APF entry points (`fesm2022/`, `index.d.ts`) present.
 
 - [ ] **Step 6: Verify published file shape**
@@ -1248,6 +1310,7 @@ ls -la dist/styles/
 ls -la dist/docs/
 cat dist/package.json
 ```
+
 Expected: styles partial present at `dist/styles/_tbx-mat-bottom-sheet.scss`; docs files present; the generated `dist/package.json` has the correct `name`, `peerDependencies`, and APF entry-point fields.
 
 - [ ] **Step 7: Commit any trailing format / lint fixes**

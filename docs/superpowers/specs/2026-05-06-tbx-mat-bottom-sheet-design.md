@@ -29,12 +29,12 @@ Drag-to-dismiss, peek/expand modes, and top-anchored sheets are explicitly out o
 
 ## Decisions Captured During Brainstorming
 
-| Decision | Choice | Rationale |
-| --- | --- | --- |
-| API surface | Mirror `TbxMatDialogService` 1:1 | Maximum consistency across the message-surface family. |
-| Sizing fields on config | Drop entirely | `MatBottomSheetConfig` has no sizing knobs; bottom sheet sizes itself. |
-| Drag handle | `dragHandle?: boolean`, default `false` | Opt-in keeps default chrome dialog-aligned; consumers can enable for typical bottom-sheet UX. |
-| Mirroring strategy | Strict mirror (Approach #1) | Adapted-shell (#2) erodes consistency; composition (#3) couples internals across packages. |
+| Decision                | Choice                                  | Rationale                                                                                     |
+| ----------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
+| API surface             | Mirror `TbxMatDialogService` 1:1        | Maximum consistency across the message-surface family.                                        |
+| Sizing fields on config | Drop entirely                           | `MatBottomSheetConfig` has no sizing knobs; bottom sheet sizes itself.                        |
+| Drag handle             | `dragHandle?: boolean`, default `false` | Opt-in keeps default chrome dialog-aligned; consumers can enable for typical bottom-sheet UX. |
+| Mirroring strategy      | Strict mirror (Approach #1)             | Adapted-shell (#2) erodes consistency; composition (#3) couples internals across packages.    |
 
 ## Package Skeleton
 
@@ -109,7 +109,7 @@ README.md, CHANGELOG.md, LICENSE (AGPL-3.0-only), CLAUDE.md
 Per the `@teqbench/tbx-mat-*` rule:
 
 - PascalCase prefix: `TbxMat`
-- UPPER_SNAKE_CASE prefix: `TBX_MAT_`
+- UPPER*SNAKE_CASE prefix: `TBX_MAT*`
 - Component selector: `tbx-mat-bottom-sheet-*`
 - Panel class root: `tbx-mat-bottom-sheet-panel`
 
@@ -124,26 +124,36 @@ Per the `@teqbench/tbx-mat-*` rule:
 ```typescript
 class TbxMatBottomSheetService {
     show<T = void, F = Record<string, unknown>>(
-        config: TbxMatBottomSheetConfig<T>,
+        config: TbxMatBottomSheetConfig<T>
     ): Promise<TbxMatBottomSheetResult<T, F>>;
 
     success<F = Record<string, unknown>>(
-        config: TbxMatBottomSheetConfigArgs<void>,
+        config: TbxMatBottomSheetConfigArgs<void>
     ): Promise<TbxMatBottomSheetResult<void, F>>;
 
-    error<F     = Record<string, unknown>>(config: TbxMatBottomSheetConfigArgs<void>): Promise<TbxMatBottomSheetResult<void, F>>;
-    warning<F   = Record<string, unknown>>(config: TbxMatBottomSheetConfigArgs<void>): Promise<TbxMatBottomSheetResult<void, F>>;
-    information<F = Record<string, unknown>>(config: TbxMatBottomSheetConfigArgs<void>): Promise<TbxMatBottomSheetResult<void, F>>;
-    help<F      = Record<string, unknown>>(config: TbxMatBottomSheetConfigArgs<void>): Promise<TbxMatBottomSheetResult<void, F>>;
-    default<F   = Record<string, unknown>>(config: TbxMatBottomSheetConfigArgs<void>): Promise<TbxMatBottomSheetResult<void, F>>;
+    error<F = Record<string, unknown>>(
+        config: TbxMatBottomSheetConfigArgs<void>
+    ): Promise<TbxMatBottomSheetResult<void, F>>;
+    warning<F = Record<string, unknown>>(
+        config: TbxMatBottomSheetConfigArgs<void>
+    ): Promise<TbxMatBottomSheetResult<void, F>>;
+    information<F = Record<string, unknown>>(
+        config: TbxMatBottomSheetConfigArgs<void>
+    ): Promise<TbxMatBottomSheetResult<void, F>>;
+    help<F = Record<string, unknown>>(
+        config: TbxMatBottomSheetConfigArgs<void>
+    ): Promise<TbxMatBottomSheetResult<void, F>>;
+    default<F = Record<string, unknown>>(
+        config: TbxMatBottomSheetConfigArgs<void>
+    ): Promise<TbxMatBottomSheetResult<void, F>>;
 
-    confirm<F   = Record<string, unknown>>(
-        config: TbxMatBottomSheetConfigArgs<void>,
+    confirm<F = Record<string, unknown>>(
+        config: TbxMatBottomSheetConfigArgs<void>
     ): Promise<TbxMatBottomSheetResult<void, F>>; // Help severity + Yes/No buttons
 
-    input<T, F  = Record<string, unknown>>(
-        config: TbxMatBottomSheetConfigArgs<T>,
-    ): Promise<TbxMatBottomSheetResult<T, F>>;    // Information severity + OK/Cancel + content projection
+    input<T, F = Record<string, unknown>>(
+        config: TbxMatBottomSheetConfigArgs<T>
+    ): Promise<TbxMatBottomSheetResult<T, F>>; // Information severity + OK/Cancel + content projection
 }
 ```
 
@@ -157,21 +167,20 @@ class TbxMatBottomSheetService {
 
 ```typescript
 interface TbxMatBottomSheetConfig<T = void> {
-    title: string;                                   // required
-    icon?: string;                                   // Material Symbols name; overrides severity icon
+    title: string; // required
+    icon?: string; // Material Symbols name; overrides severity icon
     subtitle?: string;
     contextBadge?: string;
-    message?: string;                                // ignored when `content` is provided
+    message?: string; // ignored when `content` is provided
     type?: TbxMatSeverityLevel;
-    content?: Type<TbxMatBottomSheetData<T>>;        // projected component
+    content?: Type<TbxMatBottomSheetData<T>>; // projected component
     footer?: readonly TbxMatBottomSheetFooterControlType[];
     disableClose?: boolean;
-    dragHandle?: boolean;                            // default false — opt-in grabber pill
+    dragHandle?: boolean; // default false — opt-in grabber pill
     // No width / minWidth / maxWidth / minHeight / maxHeight (intentionally absent).
 }
 
-type TbxMatBottomSheetConfigArgs<T> =
-    { title: string } & Partial<Omit<TbxMatBottomSheetConfig<T>, 'title'>>;
+type TbxMatBottomSheetConfigArgs<T> = { title: string } & Partial<Omit<TbxMatBottomSheetConfig<T>, 'title'>>;
 ```
 
 ### Result
@@ -179,15 +188,15 @@ type TbxMatBottomSheetConfigArgs<T> =
 ```typescript
 interface TbxMatBottomSheetResult<T = void, F = Record<string, unknown>> {
     result: TbxMatBottomSheetDismissReason;
-    data?: T;                                        // present only on Affirm with content
-    footerValues: F;                                 // {} on any non-Affirm dismissal
+    data?: T; // present only on Affirm with content
+    footerValues: F; // {} on any non-Affirm dismissal
 }
 
 enum TbxMatBottomSheetDismissReason {
     Affirm = 'affirm',
-    Deny   = 'deny',
+    Deny = 'deny',
     Cancel = 'cancel',
-    Close  = 'close',
+    Close = 'close',
 }
 ```
 
@@ -196,7 +205,7 @@ enum TbxMatBottomSheetDismissReason {
 ```typescript
 interface TbxMatBottomSheetData<T> {
     readonly isValid: Signal<boolean>; // gates affirm button disabled state
-    readonly value:   Signal<T>;       // extracted on Affirm
+    readonly value: Signal<T>; // extracted on Affirm
 }
 ```
 
@@ -225,19 +234,19 @@ interface TbxMatBottomSheetFooterButton extends TbxMatBottomSheetFooterItem {
     readonly disabled?: boolean | Signal<boolean>;
 }
 
-interface TbxMatBottomSheetFooterCheckbox    extends TbxMatBottomSheetFooterItem {
+interface TbxMatBottomSheetFooterCheckbox extends TbxMatBottomSheetFooterItem {
     readonly type: 'checkbox';
     readonly label: string;
     readonly initialValue?: boolean;
 }
 
-interface TbxMatBottomSheetFooterToggle      extends TbxMatBottomSheetFooterItem {
+interface TbxMatBottomSheetFooterToggle extends TbxMatBottomSheetFooterItem {
     readonly type: 'toggle';
     readonly label: string;
     readonly initialValue?: boolean;
 }
 
-interface TbxMatBottomSheetFooterRadioGroup  extends TbxMatBottomSheetFooterItem {
+interface TbxMatBottomSheetFooterRadioGroup extends TbxMatBottomSheetFooterItem {
     readonly type: 'radio-group';
     readonly options: readonly TbxMatBottomSheetFooterRadioOption[];
     readonly initialValue?: string;
@@ -267,10 +276,10 @@ Layout rule: a single flex row of items in array order. The first item with `ali
 ### Button presets (constants)
 
 ```typescript
-TBX_MAT_BOTTOM_SHEET_BUTTONS_OK             // single OK (primary, end)
-TBX_MAT_BOTTOM_SHEET_BUTTONS_OK_CANCEL      // Cancel (text, start) + OK (primary, end)
-TBX_MAT_BOTTOM_SHEET_BUTTONS_YES_NO         // No (text, end) + Yes (primary, end)
-TBX_MAT_BOTTOM_SHEET_BUTTONS_YES_NO_CANCEL  // Cancel (text, start) + No (text, end) + Yes (primary, end)
+TBX_MAT_BOTTOM_SHEET_BUTTONS_OK; // single OK (primary, end)
+TBX_MAT_BOTTOM_SHEET_BUTTONS_OK_CANCEL; // Cancel (text, start) + OK (primary, end)
+TBX_MAT_BOTTOM_SHEET_BUTTONS_YES_NO; // No (text, end) + Yes (primary, end)
+TBX_MAT_BOTTOM_SHEET_BUTTONS_YES_NO_CANCEL; // Cancel (text, start) + No (text, end) + Yes (primary, end)
 ```
 
 Same shapes / labels / emphasis / alignment as the dialog presets.
@@ -281,18 +290,16 @@ Same shapes / labels / emphasis / alignment as the dialog presets.
 
 ```typescript
 interface TbxMatBottomSheetProviderConfig {
-    readonly severityIconResolverService:
-        & TbxMatSeverityResolver
-        & TbxMatIconResolver<TbxMatSeverityLevel>
-        & { readonly iconType: TbxMatIconType };
+    readonly severityIconResolverService: TbxMatSeverityResolver &
+        TbxMatIconResolver<TbxMatSeverityLevel> & { readonly iconType: TbxMatIconType };
     readonly closeIconResolverService?: TbxMatBottomSheetIconResolver;
 }
 
-type TbxMatBottomSheetIconResolver =
-    TbxMatIconResolver<string> & { readonly iconType: TbxMatIconType };
+type TbxMatBottomSheetIconResolver = TbxMatIconResolver<string> & { readonly iconType: TbxMatIconType };
 
-const TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG =
-    new InjectionToken<TbxMatBottomSheetProviderConfig>('TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG');
+const TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG = new InjectionToken<TbxMatBottomSheetProviderConfig>(
+    'TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG'
+);
 ```
 
 No automatic provider registration. Without an explicit provider, the shell will not render — documented on the token's TSDoc and in the README installation section.
@@ -316,7 +323,7 @@ Each subclasses base classes from `@teqbench/tbx-mat-icons` / `@teqbench/tbx-mat
 1. **Drag handle** — rendered only when `config.dragHandle === true`. Centered grabber pill, decorative (`aria-hidden="true"`).
 2. **Header** — severity-tinted icon circle, `<h2>` title, optional subtitle, optional context-badge chip, close button (resolver-driven icon, `aria-label="Close bottom sheet"`).
 3. **Divider**.
-4. **Body** — message text *or* the projected component (instantiated dynamically via `ViewContainerRef.createComponent()` inside an `afterNextRender()` hook — never both).
+4. **Body** — message text _or_ the projected component (instantiated dynamically via `ViewContainerRef.createComponent()` inside an `afterNextRender()` hook — never both).
 5. **Divider** — conditional on a non-empty footer.
 6. **Footer** — single flex row per the footer-item rules.
 
