@@ -1,6 +1,8 @@
 # `@teqbench/tbx-mat-bottom-sheet` — Package Design
 
 > **Update 2026-05-07:** The `dragHandle` config field was removed post-implementation. The pill was decorative-only (no drag-to-dismiss behavior), which set up an expectation the package didn't fulfill. See `git log --grep='remove dragHandle'` for the removal commits.
+>
+> **Update 2026-05-07:** The `'destructive'` value was removed from the footer-button `emphasis` enum. Consumers express destructive intent via the bottom sheet `severity` field (`'warning'` for reversible, `'error'` for irreversible) instead. Removes API orthogonality conflict (emphasis described button weight, severity described surface tone — two axes were being conflated) and palette-mixing visual debt. See `git log --grep='drop destructive emphasis'` for the removal commits.
 
 **Date:** 2026-05-06
 **Branch:** `fix/package-updates` (off `dev`)

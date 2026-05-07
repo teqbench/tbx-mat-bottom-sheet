@@ -383,7 +383,7 @@ export class BottomSheetHarnessComponent {
                 icon: 'delete',
                 iconPosition: 'before',
                 result: TbxMatBottomSheetDismissReason.Affirm,
-                emphasis: 'destructive',
+                emphasis: 'primary',
                 align: 'end',
             },
         ];
