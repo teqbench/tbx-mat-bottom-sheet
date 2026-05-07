@@ -23,7 +23,13 @@
     "test:coverage": "vitest run --coverage",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "STORYBOOK_MODE=dev storybook dev -p 6006 -c .storybook",
+    "storybook:dev": "STORYBOOK_MODE=dev storybook dev -p 6006 -c .storybook",
+    "storybook:docs": "STORYBOOK_MODE=docs storybook dev -p 6007 -c .storybook",
+    "build-storybook": "STORYBOOK_MODE=dev storybook build -c .storybook -o storybook-dev-static",
+    "build-storybook:dev": "STORYBOOK_MODE=dev storybook build -c .storybook -o storybook-dev-static",
+    "build-storybook:docs": "STORYBOOK_MODE=docs storybook build -c .storybook -o storybook-docs-static"
   },
   "devDependenciesPinned": {
     "//": [
@@ -32,11 +38,11 @@
       "@types/node is pinned to the major version matching the Node runtime (24). Auto-updating",
       "to 25 pulls in type definitions for APIs not available on the target runtime, which can",
       "mask compatibility issues. Re-evaluate when the project moves to the next even-numbered Node LTS.",
-      "@analogjs/vite-plugin-angular and @analogjs/vitest-angular are pinned without ^ because",
-      "minor releases (2.4+, 2.5+) introduce stricter peer-dep ranges that require Angular patch",
-      "versions ahead of the ^21.2.6 we depend on, forcing --legacy-peer-deps and pulling in",
-      "vite 8 (which has a high-severity path-traversal CVE). Hold at 2.3.1 until the toolchain",
-      "stabilises; re-evaluate when @analogjs publishes a release that respects ^21 peers."
+      "all three @analogjs/* packages (vite-plugin-angular, vitest-angular, storybook-angular) are",
+      "pinned without ^ because minor releases (2.4+, 2.5+) introduce stricter peer-dep ranges that",
+      "require Angular patch versions ahead of the ^21.2.6 we depend on, forcing --legacy-peer-deps",
+      "and pulling in vite 8 (which has a high-severity path-traversal CVE). Hold at 2.3.1 until the",
+      "toolchain stabilises; re-evaluate when @analogjs publishes a release that respects ^21 peers."
     ]
   },
   "peerDependencies": {
@@ -47,6 +53,7 @@
     "@teqbench/tbx-mat-severity-theme": ">=8.0.0"
   },
   "devDependencies": {
+    "@analogjs/storybook-angular": "2.3.1",
     "@analogjs/vite-plugin-angular": "2.3.1",
     "@analogjs/vitest-angular": "2.3.1",
     "@angular/animations": "^21.2.6",
@@ -60,6 +67,7 @@
     "@angular/material": "^21.2.4",
     "@angular/platform-browser": "^21.2.6",
     "@angular/platform-browser-dynamic": "^21.2.6",
+    "@storybook/angular": "^10.3.3",
     "@teqbench/tbx-mat-icons": "^4.2.0",
     "@teqbench/tbx-mat-severity-theme": "^8.0.2",
     "@types/node": "~24.12.0",
@@ -72,6 +80,7 @@
     "lint-staged": "^16.3.3",
     "ng-packagr": "^21.2.2",
     "prettier": "^3.8.1",
+    "storybook": "^10.3.3",
     "typescript": "~5.9.0",
     "typescript-eslint": "8.58.0",
     "vitest": "^4.0.18",
