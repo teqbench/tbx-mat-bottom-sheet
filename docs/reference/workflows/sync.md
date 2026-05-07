@@ -16,9 +16,10 @@ After [Release Please ↗](https://github.com/googleapis/release-please) merges 
 
 ## Triggers
 
-| Event  | Branches |
-| ------ | -------- |
-| `push` | `main`   |
+<dl>
+    <dt><code>push</code></dt>
+    <dd>Branches: <code>main</code>.</dd>
+</dl>
 
 Sync runs on **every push to `main`**. If `dev` is already up to date, the merge is a no-op.
 
@@ -35,10 +36,12 @@ cancel-in-progress: false
 
 ## Secrets Used
 
-| Secret            | Purpose                                  |
-| ----------------- | ---------------------------------------- |
-| `APP_ID`          | GitHub App ID for generating a bot token |
-| `APP_PRIVATE_KEY` | GitHub App private key                   |
+<dl>
+    <dt><code>APP_ID</code></dt>
+    <dd>GitHub App ID for generating a bot token.</dd>
+    <dt><code>APP_PRIVATE_KEY</code></dt>
+    <dd>GitHub App private key.</dd>
+</dl>
 
 The app token allows the Sync workflow to bypass the `dev` branch protection ruleset.
 
@@ -59,7 +62,9 @@ The `[skip ci]` tag prevents the push to `dev` from triggering a CI run per the 
 
 ## Interaction with Other Workflows
 
-| What Happens                 | Result                                        |
-| ---------------------------- | --------------------------------------------- |
-| Sync pushes to `dev`         | CI on `dev` is **skipped** via `[skip ci]`    |
-| Sync races with another push | Handled by `git pull --rebase` before pushing |
+<dl>
+    <dt>Sync pushes to <code>dev</code></dt>
+    <dd>CI on <code>dev</code> is <strong>skipped</strong> via <code>[skip ci]</code>.</dd>
+    <dt>Sync races with another push</dt>
+    <dd>Handled by <code>git pull --rebase</code> before pushing.</dd>
+</dl>

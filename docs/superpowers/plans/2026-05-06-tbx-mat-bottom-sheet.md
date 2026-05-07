@@ -18,19 +18,30 @@
 
 Apply these renames whenever a file is copied from `tbx-mat-dialogs`:
 
-| From                                                                     | To                                                                                     |
-| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| `@teqbench/tbx-mat-dialogs` (in code/imports/docs)                       | `@teqbench/tbx-mat-bottom-sheet`                                                       |
-| `TbxMatDialog` (PascalCase prefix)                                       | `TbxMatBottomSheet`                                                                    |
-| `tbxMatDialog` (camelCase prefix)                                        | `tbxMatBottomSheet`                                                                    |
-| `TBX_MAT_DIALOG_` (UPPER_SNAKE prefix)                                   | `TBX_MAT_BOTTOM_SHEET_`                                                                |
-| `tbx-mat-dialog` (kebab-case prefix in selectors / panel classes / SCSS) | `tbx-mat-bottom-sheet`                                                                 |
-| `dialog` (file/directory names)                                          | `bottom-sheet`                                                                         |
-| `Dialog` (in prose, comments, docs, README)                              | `BottomSheet` (TitleCase) or `bottom sheet` (prose)                                    |
-| `MatDialog`, `MatDialogRef`, `MAT_DIALOG_DATA`, `MatDialogConfig`        | `MatBottomSheet`, `MatBottomSheetRef`, `MAT_BOTTOM_SHEET_DATA`, `MatBottomSheetConfig` |
-| `afterClosed()`                                                          | `afterDismissed()`                                                                     |
-| `dialogRef.close(...)`                                                   | `ref.dismiss(...)`                                                                     |
-| Module path `@angular/material/dialog`                                   | `@angular/material/bottom-sheet`                                                       |
+<dl>
+    <dt><code>@teqbench/tbx-mat-dialogs</code> (in code/imports/docs)</dt>
+    <dd>Replace with <code>@teqbench/tbx-mat-bottom-sheet</code>.</dd>
+    <dt><code>TbxMatDialog</code> (PascalCase prefix)</dt>
+    <dd>Replace with <code>TbxMatBottomSheet</code>.</dd>
+    <dt><code>tbxMatDialog</code> (camelCase prefix)</dt>
+    <dd>Replace with <code>tbxMatBottomSheet</code>.</dd>
+    <dt><code>TBX_MAT_DIALOG_</code> (UPPER_SNAKE prefix)</dt>
+    <dd>Replace with <code>TBX_MAT_BOTTOM_SHEET_</code>.</dd>
+    <dt><code>tbx-mat-dialog</code> (kebab-case prefix in selectors / panel classes / SCSS)</dt>
+    <dd>Replace with <code>tbx-mat-bottom-sheet</code>.</dd>
+    <dt><code>dialog</code> (file/directory names)</dt>
+    <dd>Replace with <code>bottom-sheet</code>.</dd>
+    <dt><code>Dialog</code> (in prose, comments, docs, README)</dt>
+    <dd>Replace with <code>BottomSheet</code> (TitleCase) or <code>bottom sheet</code> (prose).</dd>
+    <dt><code>MatDialog</code>, <code>MatDialogRef</code>, <code>MAT_DIALOG_DATA</code>, <code>MatDialogConfig</code></dt>
+    <dd>Replace with <code>MatBottomSheet</code>, <code>MatBottomSheetRef</code>, <code>MAT_BOTTOM_SHEET_DATA</code>, <code>MatBottomSheetConfig</code>.</dd>
+    <dt><code>afterClosed()</code></dt>
+    <dd>Replace with <code>afterDismissed()</code>.</dd>
+    <dt><code>dialogRef.close(...)</code></dt>
+    <dd>Replace with <code>ref.dismiss(...)</code>.</dd>
+    <dt>Module path <code>@angular/material/dialog</code></dt>
+    <dd>Replace with <code>@angular/material/bottom-sheet</code>.</dd>
+</dl>
 
 **Surgical adjustments** (NOT mechanical — these alter behavior):
 

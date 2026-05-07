@@ -16,10 +16,12 @@ Tracks pinned dependencies that are waiting for a new version — for example, w
 
 ## Triggers
 
-| Event               | Schedule           |
-| ------------------- | ------------------ |
-| `schedule`          | Daily at 12:00 UTC |
-| `workflow_dispatch` | Manual trigger     |
+<dl>
+    <dt><code>schedule</code></dt>
+    <dd>Daily at 12:00 UTC.</dd>
+    <dt><code>workflow_dispatch</code></dt>
+    <dd>Manual trigger.</dd>
+</dl>
 
 ---
 
@@ -53,20 +55,27 @@ also-track: @angular/cli, @angular/compiler
 -->
 ```
 
-| Field         | Required | Description                                                       |
-| ------------- | -------- | ----------------------------------------------------------------- |
-| `package`     | Yes      | [npm ↗](https://www.npmjs.com) package name to check              |
-| `resolution`  | No       | Resolution condition (see below). Defaults to `manual`.           |
-| `description` | No       | Human-readable context for status reports                         |
-| `also-track`  | No       | Comma-separated list of additional packages to show in the report |
+<dl>
+    <dt><code>package</code> (required)</dt>
+    <dd><a href="https://www.npmjs.com">npm ↗</a> package name to check.</dd>
+    <dt><code>resolution</code> (optional)</dt>
+    <dd>Resolution condition (see below). Default: <code>manual</code>.</dd>
+    <dt><code>description</code> (optional)</dt>
+    <dd>Human-readable context for status reports.</dd>
+    <dt><code>also-track</code> (optional)</dt>
+    <dd>Comma-separated list of additional packages to show in the report.</dd>
+</dl>
 
 ### Resolution Conditions
 
-| Condition               | Behavior                                                              |
-| ----------------------- | --------------------------------------------------------------------- |
-| `semver-gte:<version>`  | Resolved when latest version >= target. Status: Monitoring or Blocked |
-| `semver-major:<number>` | Resolved when latest major >= target. Status: Resolved or Blocked     |
-| `manual` (or omitted)   | Always shows as Action Needed — requires manual evaluation            |
+<dl>
+    <dt><code>semver-gte:&lt;version&gt;</code></dt>
+    <dd>Resolved when latest version &gt;= target. Status: Monitoring or Blocked.</dd>
+    <dt><code>semver-major:&lt;number&gt;</code></dt>
+    <dd>Resolved when latest major &gt;= target. Status: Resolved or Blocked.</dd>
+    <dt><code>manual</code> (or omitted)</dt>
+    <dd>Always shows as Action Needed — requires manual evaluation.</dd>
+</dl>
 
 ---
 
@@ -82,12 +91,16 @@ The reusable workflow:
 
 ### Status Labels
 
-| Label         | Meaning                                        |
-| ------------- | ---------------------------------------------- |
-| Resolved      | Resolution condition met — ready to integrate  |
-| Blocked       | Waiting for a version that meets the condition |
-| Action needed | Manual resolution — requires human evaluation  |
-| Monitoring    | Condition met but keeping an eye on it         |
+<dl>
+    <dt>Resolved</dt>
+    <dd>Resolution condition met — ready to integrate.</dd>
+    <dt>Blocked</dt>
+    <dd>Waiting for a version that meets the condition.</dd>
+    <dt>Action needed</dt>
+    <dd>Manual resolution — requires human evaluation.</dd>
+    <dt>Monitoring</dt>
+    <dd>Condition met but keeping an eye on it.</dd>
+</dl>
 
 ---
 
