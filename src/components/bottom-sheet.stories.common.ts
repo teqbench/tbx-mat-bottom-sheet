@@ -245,6 +245,7 @@ export class StoryAlternateCloseIconService extends TbxMatFontIconService<string
             <h3>Custom</h3>
             <div class="button-group">
                 <button mat-flat-button (click)="showCustom()">Full Control (show)</button>
+                <button mat-flat-button (click)="showNoFooter()">No Footer</button>
             </div>
 
             @if (lastResult()) {
@@ -486,6 +487,16 @@ export class BottomSheetHarnessComponent {
             dragHandle: this.dragHandle(),
         });
         this.lastResult.set(`${output.result} (footer: ${JSON.stringify(output.footerValues)})`);
+    }
+
+    async showNoFooter(): Promise<void> {
+        const output = await this.bottomSheet.show({
+            title: 'Build Started',
+            type: TbxMatSeverityLevel.Information,
+            message: 'Your build was queued and will run shortly. There is nothing to confirm — close this sheet via the header close button, backdrop click, or Escape.',
+            dragHandle: this.dragHandle(),
+        });
+        this.lastResult.set(output.result);
     }
 
     async showCustom(): Promise<void> {
