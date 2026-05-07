@@ -1,5 +1,7 @@
 # `@teqbench/tbx-mat-bottom-sheet` Implementation Plan
 
+> **Update 2026-05-07:** The `dragHandle` config field was removed post-implementation. The pill was decorative-only (no drag-to-dismiss behavior), which set up an expectation the package didn't fulfill. See `git log --grep='remove dragHandle'` for the removal commits.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Clone `@teqbench/tbx-mat-dialogs` into `@teqbench/tbx-mat-bottom-sheet`, swapping `MatDialog` for `MatBottomSheet` and applying two surgical adjustments — drop sizing config fields and add an opt-in `dragHandle?: boolean` — to produce a fully tested, lintable, buildable, publishable Angular library.

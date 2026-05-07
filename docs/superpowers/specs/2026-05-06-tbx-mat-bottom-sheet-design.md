@@ -1,5 +1,7 @@
 # `@teqbench/tbx-mat-bottom-sheet` — Package Design
 
+> **Update 2026-05-07:** The `dragHandle` config field was removed post-implementation. The pill was decorative-only (no drag-to-dismiss behavior), which set up an expectation the package didn't fulfill. See `git log --grep='remove dragHandle'` for the removal commits.
+
 **Date:** 2026-05-06
 **Branch:** `fix/package-updates` (off `dev`)
 **Status:** Approved for implementation planning
