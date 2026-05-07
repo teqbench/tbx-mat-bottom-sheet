@@ -1,6 +1,17 @@
 # Glossary rendered in the README "Concepts" section. Term -> one-line definition.
-# TODO: Replace placeholder entries with the package's actual domain terms.
-- term: TODO term
-  definition: TODO one-line definition.
-- term: TODO term
-  definition: TODO one-line definition.
+- term: Severity level
+  definition: A classification (default, success, error, warning, information, help) that selects the icon and color scheme applied to a bottom sheet.
+- term: Bottom sheet patterns
+  definition: confirm and input are bottom sheet-specific UX wrappers around the severity model — confirm defaults to Help severity with Yes/No buttons; input defaults to Information severity with a projected content component and OK/Cancel buttons.
+- term: Footer item
+  definition: An entry in the bottom sheet footer with a key (used in the returned footerValues record) and an align ('start' flows left, 'end' flows right). The first 'end' item gets margin-left auto, separating start- and end-aligned items.
+- term: Footer button emphasis
+  definition: Visual weight of a footer button — 'primary' (filled, severity-colored), 'destructive' (filled, always Error-colored regardless of bottom sheet severity), or 'text' (no fill).
+- term: Dismiss reason
+  definition: The cause of a bottom sheet closing — Affirm, Deny, Cancel, or Close. Footer buttons declare a result to map their click; backdrop click and Escape both emit Close with empty footer values.
+- term: Provider config
+  definition: The DI-provided configuration (TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG) that supplies the severity icon resolver and an optional close icon resolver. Required.
+- term: Content component
+  definition: A consumer-defined @Component that implements TbxMatBottomSheetData<T>. Used in the body of input bottom sheets; the shell reads isValid to drive the affirm button's disabled state and value to extract data on confirm.
+- term: Drag handle
+  definition: An opt-in decorative pill rendered above the bottom sheet header when dragHandle is true. Provides a visual affordance signalling dismissibility but does not implement drag-to-dismiss. Defaults to false.
