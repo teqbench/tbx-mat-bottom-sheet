@@ -51,7 +51,6 @@ The footer is a single flex row of buttons and form controls (checkboxes, toggle
 - **Theming via CSS custom properties** — six severity background/text token pairs aliased from `@teqbench/tbx-mat-severity-theme`, plus centralized opacity tokens for action button variants.
 - **Inverted palette flip** — `provideTbxMatSeverityTheme({ invert: true })` swaps background and text values app-wide; banners, notifications, and bottom sheets invert simultaneously.
 - **Modal semantics** — backdrop, focus trap, escape-to-close, and `aria-modal` come from `MatBottomSheet`; this package adds the chrome and the typed result surface.
-- **Drag-handle opt-in** — set `dragHandle: true` to render a decorative pill above the header; signals dismissibility without implementing drag-to-dismiss.
 
 ## When to use
 
@@ -174,21 +173,6 @@ if (output.result === TbxMatBottomSheetDismissReason.Affirm) {
 }
 ```
 
-### Drag handle
-
-Enable the drag-handle pill above the header (decorative, opt-in):
-
-```typescript
-// Enable the drag-handle pill above the header (decorative, opt-in).
-await this.bottomSheet.confirm({
-    title: 'Save changes?',
-    message: 'Save your edits before closing?',
-    dragHandle: true,
-});
-```
-
-The pill is `aria-hidden` and does not implement drag-to-dismiss — it is a visual affordance only.
-
 ### Full control via `show()`
 
 ```typescript
@@ -294,7 +278,6 @@ providers: [
 - **Dismiss reason** — `Affirm`, `Deny`, `Cancel`, or `Close`. Footer buttons declare a `result` to map their click; backdrop click and Escape both emit `Close` with empty footer values.
 - **Provider config** — the DI-provided configuration (`TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG`) that supplies the severity icon resolver and an optional close icon resolver. Required.
 - **Content component** — a consumer-defined `@Component` that implements `TbxMatBottomSheetData<T>`. Used in the body of input bottom sheets; the shell reads `isValid` to drive the affirm button's disabled state and `value` to extract data on confirm.
-- **Drag handle** — an opt-in decorative pill rendered above the header when `dragHandle: true`. Marked `aria-hidden`; does not implement drag-to-dismiss. Defaults to `false`.
 
 ## API Reference
 
@@ -366,8 +349,6 @@ providers: [
     <dd>Footer items (buttons + form controls). When omitted, the service applies the method's default preset.</dd>
     <dt><code>disableClose</code> (<code>boolean</code>)</dt>
     <dd>When <code>true</code>, blocks Escape and backdrop dismissal. The user must interact with a footer button to close. Default: <code>false</code>.</dd>
-    <dt><code>dragHandle</code> (<code>boolean</code>)</dt>
-    <dd>When <code>true</code>, renders a centered decorative pill above the header as a dismissal affordance. Does not implement drag-to-dismiss. Default: <code>false</code>.</dd>
 </dl>
 
 > **Note on sizing:** [Angular Material's MatBottomSheet ↗](https://material.angular.dev/components/bottom-sheet/api) does not expose sizing knobs. Width and height are controlled entirely via CSS on the host element. There are no `width`, `minWidth`, `maxWidth`, `minHeight`, or `maxHeight` config fields on this package.
@@ -464,7 +445,6 @@ Mirrors the `@teqbench/tbx-mat-banners` and `@teqbench/tbx-mat-notifications` se
 - **Reduced motion.** [Angular Material's MatBottomSheet ↗](https://material.angular.dev/components/bottom-sheet/api) honors `prefers-reduced-motion: reduce`.
 - **Color contrast.** The default severity palette meets [WCAG ↗](https://www.w3.org/WAI/standards-guidelines/wcag/) AA contrast for text on each severity background (default, success, error, warning, information, help). Overriding severity tokens is the consumer's responsibility to re-verify.
 - **Icons.** Severity and close icons are decorative and `aria-hidden`.
-- **Drag handle.** The drag-handle pill is `aria-hidden="true"` and does not signal a draggable interaction to assistive technology.
 
 ## Compatibility
 

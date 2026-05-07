@@ -18,5 +18,3 @@
   summary: "provideTbxMatSeverityTheme({ invert: true }) swaps background and text values app-wide; banners, notifications, and bottom sheets invert simultaneously."
 - name: Modal semantics
   summary: Backdrop, focus trap, escape-to-close, and aria-modal come from MatBottomSheet; this package adds the chrome and the typed result surface.
-- name: Drag-handle opt-in
-  summary: Set dragHandle true to render a decorative pill above the header — a dismissal affordance without drag-to-dismiss behavior.

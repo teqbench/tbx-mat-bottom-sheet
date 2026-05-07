@@ -13,5 +13,3 @@
   definition: The DI-provided configuration (TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG) that supplies the severity icon resolver and an optional close icon resolver. Required.
 - term: Content component
   definition: A consumer-defined @Component that implements TbxMatBottomSheetData<T>. Used in the body of input bottom sheets; the shell reads isValid to drive the affirm button's disabled state and value to extract data on confirm.
-- term: Drag handle
-  definition: An opt-in decorative pill rendered above the bottom sheet header when dragHandle is true. Provides a visual affordance signalling dismissibility but does not implement drag-to-dismiss. Defaults to false.

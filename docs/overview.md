@@ -1,5 +1,5 @@
 ---
-tagline: An opinionated [Angular ↗](https://angular.dev) bottom sheet service built on [Angular Material's MatBottomSheet ↗](https://material.angular.dev/components/bottom-sheet/api) with severity-leveled methods (success / error / warning / information / help / default), bottom sheet-specific UX patterns (confirm / input), pluggable severity and close icons, rich footer controls, and an opt-in drag-handle affordance.
+tagline: An opinionated [Angular ↗](https://angular.dev) bottom sheet service built on [Angular Material's MatBottomSheet ↗](https://material.angular.dev/components/bottom-sheet/api) with severity-leveled methods (success / error / warning / information / help / default), bottom sheet-specific UX patterns (confirm / input), pluggable severity and close icons, and rich footer controls.
 ---
 
 ## Overview
@@ -13,8 +13,6 @@ Severity (`default`, `success`, `error`, `warning`, `information`, `help`) drive
 The footer is a single flex row of buttons and form controls (checkboxes, toggles, radio groups, toggle groups). On dismiss, all collected control values are returned alongside the dismiss reason. Input bottom sheets project a consumer-defined component into the body — the component implements `TbxMatBottomSheetData<T>` with two signals (`isValid`, `value`); the shell reads them to drive the affirm button's disabled state and to extract the form value on confirm.
 
 [Angular Material's MatBottomSheet ↗](https://material.angular.dev/components/bottom-sheet/api) does not expose sizing knobs — width and height are controlled entirely via CSS on the host element. There are no `width`, `minWidth`, `maxWidth`, `minHeight`, or `maxHeight` config options on this package.
-
-An opt-in drag-handle pill can be shown above the header by setting `dragHandle: true` on any config. The pill is a decorative visual affordance — it signals that the sheet can be dismissed, but this package does not implement drag-to-dismiss. The option is off by default so the default chrome stays aligned with the dialog look.
 
 The library is designed for [Angular ↗](https://angular.dev) 21+ applications, and exposes a pluggable icon resolver so consumers can use [Material Symbols ↗](https://fonts.google.com/icons) font icons or bundled SVG icons without changing component code.
 
