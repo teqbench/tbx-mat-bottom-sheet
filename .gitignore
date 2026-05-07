@@ -44,3 +44,9 @@ yarn-error.log
 # Testing
 /coverage/
 report.json
+
+# Storybook
+*storybook.log
+storybook-static/
+storybook-dev-static/
+storybook-docs-static/

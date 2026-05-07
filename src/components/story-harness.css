@@ -1,0 +1,86 @@
+/* Shared harness markup styles for Bottom Sheets Storybook stories.
+ *
+ * Pulled out of individual story files so the layout stays consistent
+ * across the dev story set and the docs story set. Mirrors the structure
+ * used by tbx-mat-banners and tbx-mat-notifications.
+ */
+
+.harness {
+    font-family: Roboto, sans-serif;
+    padding: 1.5rem;
+}
+
+h3 {
+    margin: 1.5rem 0 0.5rem;
+}
+
+h3:first-of-type {
+    margin-top: 0;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.state {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--mat-sys-on-surface-variant);
+}
+
+.theme-note {
+    font-size: 0.8125rem;
+    color: var(--mat-sys-on-surface-variant);
+    border-left: 3px solid var(--mat-sys-outline-variant);
+    padding: 0.25rem 0.75rem;
+    margin: 0 0 1rem;
+}
+
+.story-description {
+    font-size: 0.875rem;
+    color: var(--mat-sys-on-surface);
+    background: var(--mat-sys-surface-variant);
+    border-left: 3px solid var(--mat-sys-primary);
+    padding: 0.5rem 0.75rem;
+    margin: 0 0 1rem;
+    line-height: 1.4;
+}
+
+.instructions {
+    font-size: 0.875rem;
+    color: var(--mat-sys-on-surface);
+    background: var(--mat-sys-surface-variant);
+    border: 1px solid var(--mat-sys-outline-variant);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.instructions p {
+    margin: 0 0 0.5rem;
+}
+
+.instructions p:last-child,
+.instructions ul:last-child {
+    margin-bottom: 0;
+}
+
+.instructions ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.instructions li {
+    margin-bottom: 0.125rem;
+}
+
+.instructions code {
+    background: var(--mat-sys-surface-container);
+    color: var(--mat-sys-primary);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}

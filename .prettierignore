@@ -1,6 +1,7 @@
 # Build outputs
 dist/
 out-tsc/
+.angular/
 
 # Test & coverage artifacts
 coverage/
@@ -11,6 +12,7 @@ report.json
 CHANGELOG.md
 .badges/
 .release-please-manifest.json
+release-please-config.json
 package-lock.json
 
 # Dependencies
@@ -18,6 +20,11 @@ node_modules/
 
 # Vercel
 .vercel/
+
+# Storybook build output
+storybook-static/
+storybook-dev-static/
+storybook-docs-static/
 
 # The submodule files are owned by the skills repo, not the foundation template.
 # The foundation's Prettier shouldn't be reformatting files from another repository.

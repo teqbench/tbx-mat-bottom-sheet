@@ -1,7 +1,20 @@
 # Short, scannable feature bullets rendered in the README "At a glance" section.
 # Each entry: one short noun phrase, one-line explanation.
-# TODO: Replace placeholder entries with the package's actual feature highlights.
-- name: TODO feature
-  summary: TODO one-line explanation.
-- name: TODO feature
-  summary: TODO one-line explanation.
+- name: Severity-leveled API
+  summary: success, error, warning, information, help, and default mirror the surface used by tbx-mat-banners and tbx-mat-notifications.
+- name: Bottom sheet-only UX patterns
+  summary: confirm (Yes/No) and input (projected form content with OK/Cancel) layered on top of severity.
+- name: Async by default
+  summary: Every method returns Promise<TbxMatBottomSheetResult<T, F>>; use await, no subscription management.
+- name: Typed input bottom sheets
+  summary: TbxMatBottomSheetData<T> contract with isValid and value signals; the affirm button's disabled state is automatically driven by isValid.
+- name: Rich footer controls
+  summary: Buttons (text / filled / icon-position) and form controls (checkbox, toggle, radio group, toggle group) collected and returned on dismiss.
+- name: Pluggable icons
+  summary: Three icon services ship out of the box (severity font, severity SVG, close font); consumers can subclass any of them or supply their own resolver.
+- name: Theming via CSS custom properties
+  summary: Six severity background/text token pairs aliased from @teqbench/tbx-mat-severity-theme, plus centralized opacity tokens for action button variants.
+- name: Inverted palette flip
+  summary: "provideTbxMatSeverityTheme({ invert: true }) swaps background and text values app-wide; banners, notifications, and bottom sheets invert simultaneously."
+- name: Modal semantics
+  summary: Backdrop, focus trap, escape-to-close, and aria-modal come from MatBottomSheet; this package adds the chrome and the typed result surface.

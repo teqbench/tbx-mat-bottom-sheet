@@ -1,0 +1,17 @@
+# Thin caller — delegates to the org-wide reusable Docs Deploy workflow.
+# See: https://github.com/teqbench/.github/.github/workflows/docs-deploy.yml
+
+name: TeqBench Package - Docs Deploy Workflow
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: docs-deploy-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  docs-deploy:
+    uses: teqbench/.github/.github/workflows/docs-deploy.yml@5b246088833509a300b4b6d1e3700a3e5cfc69c4 # main
+    secrets: inherit
