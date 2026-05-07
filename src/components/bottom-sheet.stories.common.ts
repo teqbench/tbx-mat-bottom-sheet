@@ -225,7 +225,6 @@ export class StoryAlternateCloseIconService extends TbxMatFontIconService<string
                 <button mat-flat-button (click)="showWithSubtitle()">With Subtitle</button>
                 <button mat-flat-button (click)="showWithContextBadge()">With Badge</button>
                 <button mat-flat-button (click)="showConfirmWithCancel()">Yes / No / Cancel</button>
-                <button mat-flat-button (click)="showDestructive()">Destructive</button>
             </div>
 
             <h3>Footer Controls</h3>
@@ -362,36 +361,6 @@ export class BottomSheetHarnessComponent {
             title: 'Discard Draft?',
             message: 'You have an unsaved draft. Would you like to save it before closing?',
             footer: TBX_MAT_BOTTOM_SHEET_BUTTONS_YES_NO_CANCEL,
-        });
-        this.lastResult.set(output.result);
-    }
-
-    async showDestructive(): Promise<void> {
-        const destructiveButtons: readonly TbxMatBottomSheetFooterControlType[] = [
-            {
-                key: 'cancel',
-                type: 'button',
-                label: 'Cancel',
-                result: TbxMatBottomSheetDismissReason.Cancel,
-                emphasis: 'text',
-                align: 'start',
-            },
-            {
-                key: 'delete',
-                type: 'button',
-                label: 'Delete',
-                icon: 'delete',
-                iconPosition: 'before',
-                result: TbxMatBottomSheetDismissReason.Affirm,
-                emphasis: 'primary',
-                align: 'end',
-            },
-        ];
-        const output = await this.bottomSheet.show({
-            title: 'Delete Account',
-            type: TbxMatSeverityLevel.Error,
-            message: 'This will permanently delete your account and all associated data. This action cannot be undone.',
-            footer: destructiveButtons,
         });
         this.lastResult.set(output.result);
     }
