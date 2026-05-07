@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.0.0](https://github.com/teqbench/tbx-mat-bottom-sheet/compare/v0.7.0...v1.0.0) (2026-05-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* TbxMatBottomSheetConfig.dragHandle is removed.
+
+### Features
+
+* add BottomSheetShellComponent (header + body + footer chrome) ([6fe8244](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/6fe82444e15a7d1de78c652cf5804c63017b3265))
+* add close font-icon resolver service + spec ([3ac1193](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/3ac1193649f3510b0ec3cecd2f97ea7e19309a56))
+* add config / result / input-data models ([f94eafe](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/f94eafef1012e844d73fa2d3defc5a02935fba3f))
+* add config-args / footer-control / icon-resolver type aliases ([8717136](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/8717136634feb404dd88e485fa63869f47d7ca26))
+* add footer-item interfaces (button, checkbox, toggle, radio-group, toggle-group) ([fe469d7](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/fe469d76f4d114863609ad5a9d457387aef9c1c4))
+* add internal ResolvedIcon model ([66ad54e](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/66ad54e51c5d2f2221532cd7ca54d93b7b6fb35a))
+* add OK / OK_CANCEL / YES_NO / YES_NO_CANCEL button presets ([a34b832](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/a34b8320375dfd837d452cee8bdfc0e93a371f7e))
+* add provider-config model ([cbf1cbe](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/cbf1cbe689100f9513d527c62b67db819f1268f7))
+* add severity font-icon resolver service + spec ([f7f8134](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/f7f813496f4ac0975f27d4f38c1f9a70f791e58b))
+* add severity SVG-icon resolver service + spec ([fc15c29](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/fc15c29d75222642f813414d0f67e5841901634d))
+* add TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG injection token ([bbc5004](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/bbc50040598e0b331aaf313aa0b28c2cc6d1a3f8))
+* add TbxMatBottomSheetDismissReason enum ([21d3428](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/21d342803ada4d36bc75e31865559cf1f30f3004))
+* add TbxMatBottomSheetService with show / severity / confirm / input methods ([092b048](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/092b0481d98f2fabd0887e6f6685dcf3f45ddfc2))
+* expose public API via src/index.ts barrel ([ede68e7](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/ede68e7e9714a14cb94ae1b4155cf63ca07fb8fa))
+* implement @teqbench/tbx-mat-bottom-sheet package ([cc23b73](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/cc23b7381ebd6f1fb361162a06079bae1d2dade1))
+* remove dragHandle config flag and shell pill DOM ([6ba56cb](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/6ba56cb9da50a194a7ccc4a658c321c89b9284bb))
+* render drag-handle pill above header when config.dragHandle is true ([3488264](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/34882644bbe9dc02c3391780c603fc619194fbb8))
+* **styles:** add bottom-sheet panel classes and drag-handle pill styles ([f310c06](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/f310c06945d670302d6377b68671bed3c0d100b0))
+
 ## [0.7.0](https://github.com/teqbench/teqbench.dev.templates.tbx-package/compare/v0.6.2...v0.7.0) (2026-05-07)
 
 
