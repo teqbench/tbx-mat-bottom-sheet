@@ -1,0 +1,16 @@
+# Sibling @teqbench packages rendered in the README "Related packages" section.
+- name: "@teqbench/tbx-mat-dialogs"
+  url: https://github.com/teqbench/tbx-mat-dialogs
+  summary: Centered modal dialogs for heavier interactions — long copy, multi-step input, or complex confirmation flows.
+- name: "@teqbench/tbx-mat-notifications"
+  url: https://github.com/teqbench/tbx-mat-notifications
+  summary: Transient, single-action messages for lightweight acknowledgements.
+- name: "@teqbench/tbx-mat-banners"
+  url: https://github.com/teqbench/tbx-mat-banners
+  summary: Wide, persistent messages with multiple action controls for situations between notifications and bottom sheets.
+- name: "@teqbench/tbx-mat-severity-theme"
+  url: https://github.com/teqbench/tbx-mat-severity-theme
+  summary: Severity enum, abstract icon-service bases, default icon sets, shared SCSS color tokens, and the inverted-palette provider helper consumed by this package.
+- name: "@teqbench/tbx-mat-icons"
+  url: https://github.com/teqbench/tbx-mat-icons
+  summary: Shared icon resolver contracts and base services.

@@ -2,7 +2,7 @@
     "singleQuote": true,
     "semi": true,
     "tabWidth": 4,
-    "printWidth": 100,
+    "printWidth": 999,
     "trailingComma": "es5",
     "bracketSpacing": true,
     "arrowParens": "always",
@@ -12,7 +12,7 @@
             "files": ["*.html"],
             "options": {
                 "singleQuote": false,
-                "printWidth": 120
+                "printWidth": 999
             }
         },
         {

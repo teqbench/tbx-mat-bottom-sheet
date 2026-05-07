@@ -5,15 +5,16 @@
     "entryFile": "src/index.ts"
   },
   "assets": [
+    "CHANGELOG.md",
+    {
+      "input": "src/styles",
+      "glob": "**/*",
+      "output": "styles"
+    },
     {
       "input": "docs",
       "glob": "*.{md,yml}",
       "output": "docs"
-    },
-    {
-      "input": ".",
-      "glob": "CHANGELOG.md",
-      "output": "."
     }
   ]
 }
