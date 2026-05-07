@@ -16,10 +16,12 @@ The CI workflow is the quality gate for the repository. It runs formatting check
 
 ## Triggers
 
-| Event          | Branches      | Behavior                        |
-| -------------- | ------------- | ------------------------------- |
-| `push`         | `main`, `dev` | Full pipeline + badge gist push |
-| `pull_request` | `main`, `dev` | Full pipeline, no badge updates |
+<dl>
+    <dt><code>push</code></dt>
+    <dd>Branches: <code>main</code>, <code>dev</code>. Full pipeline + badge gist push.</dd>
+    <dt><code>pull_request</code></dt>
+    <dd>Branches: <code>main</code>, <code>dev</code>. Full pipeline, no badge updates.</dd>
+</dl>
 
 ---
 
@@ -36,12 +38,16 @@ Per-branch isolation: CI on `main` and `dev` run independently. Runs on the same
 
 ## Secrets & Variables
 
-| Name              | Type     | Scope | Purpose                                      |
-| ----------------- | -------- | ----- | -------------------------------------------- |
-| `APP_ID`          | Secret   | Repo  | GitHub App ID for generating a bot token     |
-| `APP_PRIVATE_KEY` | Secret   | Repo  | GitHub App private key                       |
-| `GIST_TOKEN`      | Secret   | Org   | PAT with `gist` scope for pushing badge data |
-| `GIST_ID`         | Variable | Org   | ID of the shared public badge gist           |
+<dl>
+    <dt><code>APP_ID</code> (secret, repo)</dt>
+    <dd>GitHub App ID for generating a bot token.</dd>
+    <dt><code>APP_PRIVATE_KEY</code> (secret, repo)</dt>
+    <dd>GitHub App private key.</dd>
+    <dt><code>GIST_TOKEN</code> (secret, org)</dt>
+    <dd>PAT with <code>gist</code> scope for pushing badge data.</dd>
+    <dt><code>GIST_ID</code> (variable, org)</dt>
+    <dd>ID of the shared public badge gist.</dd>
+</dl>
 
 The app token is used for checkout with submodules. The gist token is used to push badge JSON data to the shared gist owned by `teqbench-shields-bot`.
 

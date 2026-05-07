@@ -31,12 +31,16 @@ Drag-to-dismiss, peek/expand modes, and top-anchored sheets are explicitly out o
 
 ## Decisions Captured During Brainstorming
 
-| Decision                | Choice                                  | Rationale                                                                                     |
-| ----------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
-| API surface             | Mirror `TbxMatDialogService` 1:1        | Maximum consistency across the message-surface family.                                        |
-| Sizing fields on config | Drop entirely                           | `MatBottomSheetConfig` has no sizing knobs; bottom sheet sizes itself.                        |
-| Drag handle             | `dragHandle?: boolean`, default `false` | Opt-in keeps default chrome dialog-aligned; consumers can enable for typical bottom-sheet UX. |
-| Mirroring strategy      | Strict mirror (Approach #1)             | Adapted-shell (#2) erodes consistency; composition (#3) couples internals across packages.    |
+<dl>
+    <dt>API surface</dt>
+    <dd>Choice: Mirror <code>TbxMatDialogService</code> 1:1. Maximum consistency across the message-surface family.</dd>
+    <dt>Sizing fields on config</dt>
+    <dd>Choice: Drop entirely. <code>MatBottomSheetConfig</code> has no sizing knobs; bottom sheet sizes itself.</dd>
+    <dt>Drag handle</dt>
+    <dd>Choice: <code>dragHandle?: boolean</code>, default <code>false</code>. Opt-in keeps default chrome dialog-aligned; consumers can enable for typical bottom-sheet UX.</dd>
+    <dt>Mirroring strategy</dt>
+    <dd>Choice: Strict mirror (Approach #1). Adapted-shell (#2) erodes consistency; composition (#3) couples internals across packages.</dd>
+</dl>
 
 ## Package Skeleton
 
