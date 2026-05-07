@@ -20,26 +20,35 @@ html {
     @include severity.tbx-mat-severity-theme('tbx-mat-bottom-sheet');
 }
 
-/* ━━━ Action Button Opacity Tokens ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/* ━━━ Opacity Tokens━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  *
- * Centralized opacity values for severity-driven action button variants.
+ * Two independent concerns:
+ *
+ * 1. Action button opacities — alias from `--tbx-mat-bottom-sheet-action-text-opacity`
+ *    (0.8). Control how opaque action button labels and icons render
+ *    relative to the panel's `$text` color. The slight transparency
+ *    differentiates action buttons from message text. Tonal container has
+ *    its own opacity (0.55) to read as a muted surface; filled container
+ *    is opaque (`$text` at 100%) to read as a true filled button against
+ *    the colored panel.
+ *
+ * 2. Close icon opacity — independent primitive (0.8). The close icon is a
+ *    structural header element, not an action button, so it does not follow
+ *    the action-button opacity stack.
+ *
  * Mirrors the set used by `@teqbench/tbx-mat-banners` and
- * `@teqbench/tbx-mat-notifications` so consumers can override globally
- * without touching individual severity classes.
- *
- * The slight transparency differentiates action buttons from message text.
+ * `@teqbench/tbx-mat-notifications`. Defined at `:root` so consumers can
+ * override globally without touching individual severity classes.
  * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 html {
     --tbx-mat-bottom-sheet-action-text-opacity: 0.8;
-
-    --tbx-mat-bottom-sheet-action-filled-container-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
     --tbx-mat-bottom-sheet-action-tonal-container-opacity: 0.55;
 
     --tbx-mat-bottom-sheet-action-outlined-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
     --tbx-mat-bottom-sheet-action-elevated-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
-    --tbx-mat-bottom-sheet-action-icon-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
-    --tbx-mat-bottom-sheet-close-icon-opacity: var(--tbx-mat-bottom-sheet-action-text-opacity);
+
+    --tbx-mat-bottom-sheet-close-icon-opacity: 0.8;
 
     --tbx-mat-bottom-sheet-action-filled-hover-state-layer-opacity: 0.3;
     --tbx-mat-bottom-sheet-action-tonal-hover-state-layer-opacity: var(--tbx-mat-bottom-sheet-action-filled-hover-state-layer-opacity);
@@ -115,7 +124,7 @@ html {
     --mat-button-text-ripple-color: color-mix(in srgb, #{$text} calc(var(--mat-sys-pressed-state-layer-opacity) * 100%), transparent);
 
     /* ── Filled button ── */
-    --mat-button-filled-container-color: color-mix(in srgb, #{$text} calc(var(--tbx-mat-bottom-sheet-action-filled-container-opacity) * 100%), transparent);
+    --mat-button-filled-container-color: #{$text};
     --mat-button-filled-label-text-color: #{$bg};
     --mat-button-filled-state-layer-color: #{$bg};
     --mat-button-filled-hover-state-layer-opacity: var(--tbx-mat-bottom-sheet-action-filled-hover-state-layer-opacity);
