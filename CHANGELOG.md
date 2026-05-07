@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/teqbench/tbx-mat-bottom-sheet/compare/v1.0.0...v1.0.1) (2026-05-07)
+
+
+### Bug Fixes
+
+* align repo with tbx-models conventions and publish CHANGELOG.md ([522c19a](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/522c19a361f6bbd0da492ba79fabcc679c323dcd))
+* **build:** include CHANGELOG.md as a published ng-packagr asset ([25265fa](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/25265fa57654c177a1752950fb45ae110e3abc25))
+* **docs:** remove residual Dependabot prose from renovate.md ([ebfd2dd](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/ebfd2ddf9d12d8aa708ccc688342e45d4dacfbec))
+
 ## [1.0.0](https://github.com/teqbench/tbx-mat-bottom-sheet/compare/v0.7.0...v1.0.0) (2026-05-07)
 
 
