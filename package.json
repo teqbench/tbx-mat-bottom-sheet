@@ -31,7 +31,12 @@
       "breaking rule changes. Pin to a known-good version and update deliberately after testing.",
       "@types/node is pinned to the major version matching the Node runtime (24). Auto-updating",
       "to 25 pulls in type definitions for APIs not available on the target runtime, which can",
-      "mask compatibility issues. Re-evaluate when the project moves to the next even-numbered Node LTS."
+      "mask compatibility issues. Re-evaluate when the project moves to the next even-numbered Node LTS.",
+      "@analogjs/vite-plugin-angular and @analogjs/vitest-angular are pinned without ^ because",
+      "minor releases (2.4+, 2.5+) introduce stricter peer-dep ranges that require Angular patch",
+      "versions ahead of the ^21.2.6 we depend on, forcing --legacy-peer-deps and pulling in",
+      "vite 8 (which has a high-severity path-traversal CVE). Hold at 2.3.1 until the toolchain",
+      "stabilises; re-evaluate when @analogjs publishes a release that respects ^21 peers."
     ]
   },
   "peerDependencies": {
@@ -42,8 +47,8 @@
     "@teqbench/tbx-mat-severity-theme": ">=8.0.0"
   },
   "devDependencies": {
-    "@analogjs/vite-plugin-angular": "^2.3.1",
-    "@analogjs/vitest-angular": "^2.3.1",
+    "@analogjs/vite-plugin-angular": "2.3.1",
+    "@analogjs/vitest-angular": "2.3.1",
     "@angular/animations": "^21.2.6",
     "@angular/build": "^21.2.4",
     "@angular/cdk": "^21.2.4",
