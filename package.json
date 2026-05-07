@@ -77,11 +77,18 @@
     "vitest": "^4.0.18",
     "zone.js": "^0.16.1"
   },
-  "//overrides": "Pin vite to 7.3.2 — @angular/build bundles vite internally but does not constrain the version tightly enough; 7.4+ causes build failures with ng-packagr. Remove when @angular/build supports vite 7.4+.",
   "overrides": {
     "@angular/build": {
       "vite": "7.3.2"
     }
+  },
+  "overridesPinned": {
+    "//": [
+      "vite is pinned to 7.3.2 inside @angular/build's subtree because @angular/build bundles",
+      "vite internally but does not constrain the version tightly enough; vite 7.4+ causes",
+      "build failures with ng-packagr. Remove this override when @angular/build supports",
+      "vite 7.4+."
+    ]
   },
   "lint-staged": {
     "*.{ts,json,md,yml,yaml,scss,css}": [
