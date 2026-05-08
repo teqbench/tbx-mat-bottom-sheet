@@ -1,4 +1,4 @@
-# @teqbench/tbx-mat-bottom-sheet
+# @teqbench/tbx-mat-bottom-sheets
 
 <!-- Badges: gist filenames follow the pattern {repo}-{branch}-{badge}.json.
      GIST_ID is set as an org-level variable; the gist files are created automatically
@@ -32,7 +32,7 @@
 
 ## Overview
 
-`@teqbench/tbx-mat-bottom-sheet` provides bottom sheets for [Angular ↗](https://angular.dev) applications. It complements small transient notifications and persistent banners with a modal surface anchored to the bottom edge of the viewport — familiar on mobile, unobtrusive on desktop — for focused interactions: confirmations, short input, and simple content projections. Bottom sheets render via [Angular Material's MatBottomSheet ↗](https://material.angular.dev/components/bottom-sheet/api), which manages overlay, backdrop, focus trap, and modal semantics.
+`@teqbench/tbx-mat-bottom-sheets` provides bottom sheets for [Angular ↗](https://angular.dev) applications. It complements small transient notifications and persistent banners with a modal surface anchored to the bottom edge of the viewport — familiar on mobile, unobtrusive on desktop — for focused interactions: confirmations, short input, and simple content projections. Bottom sheets render via [Angular Material's MatBottomSheet ↗](https://material.angular.dev/components/bottom-sheet/api), which manages overlay, backdrop, focus trap, and modal semantics.
 
 `TbxMatBottomSheetService` exposes nine opinionated methods. Six mirror the severity-leveled surface of [`tbx-mat-banners` ↗](https://github.com/teqbench/tbx-mat-banners) and [`tbx-mat-notifications` ↗](https://github.com/teqbench/tbx-mat-notifications) — `success`, `error`, `warning`, `information`, `help`, and `default`. Two are bottom sheet-specific UX patterns layered on top of severity — `confirm` (Yes/No) and `input` (form content with OK/Cancel). The ninth, `show`, takes a full configuration for cases where the opinionated methods do not fit. All methods return a `Promise<TbxMatBottomSheetResult<T, F>>` so consumers can `await` the user's choice with no subscription management.
 
@@ -58,7 +58,7 @@ Bottom sheets are one of three message surfaces in the TeqBench component family
 
 - [`@teqbench/tbx-mat-notifications` ↗](https://github.com/teqbench/tbx-mat-notifications) — small, transient messages with at most one action control. Ideally one line of text, two lines acceptable. Use notifications to acknowledge something without interrupting the user's flow.
 - [`@teqbench/tbx-mat-banners` ↗](https://github.com/teqbench/tbx-mat-banners) — wide, persistent messages with multiple action controls. Ideally one line of message text, up to three lines still acceptable. Use a banner when the message needs the user's attention and may offer a few follow-up choices.
-- **`@teqbench/tbx-mat-bottom-sheet`** (this package) — anchored modal surface for focused, low-to-medium complexity interactions. Less visually disruptive than a centered dialog; feels natural on mobile because it emerges from the bottom edge.
+- **`@teqbench/tbx-mat-bottom-sheets`** (this package) — anchored modal surface for focused, low-to-medium complexity interactions. Less visually disruptive than a centered dialog; feels natural on mobile because it emerges from the bottom edge.
 - [`@teqbench/tbx-mat-dialogs` ↗](https://github.com/teqbench/tbx-mat-dialogs) — centered overlay for the heaviest interactions: long copy, many controls, multi-step input, or anything that demands the user's full visual attention.
 
 Reach for a bottom sheet when the interaction is more than a banner can hold but does not require the full visual weight of a centered dialog. If the content is long, the choices are many, or the layout is complex, promote it to a dialog instead.
@@ -74,7 +74,7 @@ echo "@teqbench:registry=https://npm.pkg.github.com" >> .npmrc
 Install the package:
 
 ```bash
-npm install @teqbench/tbx-mat-bottom-sheet
+npm install @teqbench/tbx-mat-bottom-sheets
 ```
 
 ### Prerequisites
@@ -86,7 +86,7 @@ Bottom sheet severity colors (success = green, error = red, etc.) are **not** ti
 Import the global bottom sheet styles in your application's stylesheet:
 
 ```scss
-@use '@teqbench/tbx-mat-bottom-sheet/styles/tbx-mat-bottom-sheet';
+@use '@teqbench/tbx-mat-bottom-sheets/styles/tbx-mat-bottom-sheet';
 ```
 
 ## Usage
@@ -94,7 +94,7 @@ Import the global bottom sheet styles in your application's stylesheet:
 ### Severity methods — fire-and-forget
 
 ```typescript
-import { TbxMatBottomSheetService, TbxMatBottomSheetDismissReason } from '@teqbench/tbx-mat-bottom-sheet';
+import { TbxMatBottomSheetService, TbxMatBottomSheetDismissReason } from '@teqbench/tbx-mat-bottom-sheets';
 
 private readonly bottomSheet = inject(TbxMatBottomSheetService);
 
@@ -122,7 +122,7 @@ if (output.result === TbxMatBottomSheetDismissReason.Affirm) {
 ### Input — projected form content
 
 ```typescript
-import { TbxMatBottomSheetData } from '@teqbench/tbx-mat-bottom-sheet';
+import { TbxMatBottomSheetData } from '@teqbench/tbx-mat-bottom-sheets';
 
 @Component({
     selector: 'app-rename-form',
@@ -211,7 +211,7 @@ import { MAT_ICON_DEFAULT_OPTIONS } from '@angular/material/icon';
 import {
     TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG,
     TbxMatBottomSheetSeverityFontIconService,
-} from '@teqbench/tbx-mat-bottom-sheet';
+} from '@teqbench/tbx-mat-bottom-sheets';
 
 providers: [
     { provide: MAT_ICON_DEFAULT_OPTIONS, useValue: { fontSet: 'material-symbols-rounded' } },
@@ -482,8 +482,8 @@ See the [security policy ↗](https://github.com/teqbench/.github/blob/main/SECU
 
 ## Feedback
 
-- [Report a bug ↗](https://github.com/teqbench/tbx-mat-bottom-sheet/issues/new?template=bug_report.md)
-- [Request a feature ↗](https://github.com/teqbench/tbx-mat-bottom-sheet/issues/new?template=feature_request.md)
+- [Report a bug ↗](https://github.com/teqbench/tbx-mat-bottom-sheets/issues/new?template=bug_report.md)
+- [Request a feature ↗](https://github.com/teqbench/tbx-mat-bottom-sheets/issues/new?template=feature_request.md)
 
 ## License
 

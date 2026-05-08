@@ -20,7 +20,7 @@ import type { TbxMatBottomSheetProviderConfig } from '../models/bottom-sheet-pro
  * ```typescript
  * // app.config.ts — font icons with explicit fontSet.
  * import { TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG, TbxMatBottomSheetSeverityFontIconService }
- *     from '@teqbench/tbx-mat-bottom-sheet';
+ *     from '@teqbench/tbx-mat-bottom-sheets';
  *
  * providers: [
  *     {
@@ -37,7 +37,7 @@ import type { TbxMatBottomSheetProviderConfig } from '../models/bottom-sheet-pro
  * // Font icons via MAT_ICON_DEFAULT_OPTIONS (no explicit fontSet).
  * import { MAT_ICON_DEFAULT_OPTIONS } from '@angular/material/icon';
  * import { TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG, TbxMatBottomSheetSeverityFontIconService }
- *     from '@teqbench/tbx-mat-bottom-sheet';
+ *     from '@teqbench/tbx-mat-bottom-sheets';
  *
  * providers: [
  *     { provide: MAT_ICON_DEFAULT_OPTIONS, useValue: { fontSet: 'material-symbols-rounded' } },

@@ -32,7 +32,7 @@ import { type TbxMatBottomSheetIconResolver } from '../types/bottom-sheet-icon-r
  * ```typescript
  * // app.config.ts — font icons with explicit fontSet.
  * import { TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG, TbxMatBottomSheetSeverityFontIconService }
- *     from '@teqbench/tbx-mat-bottom-sheet';
+ *     from '@teqbench/tbx-mat-bottom-sheets';
  *
  * providers: [
  *     {

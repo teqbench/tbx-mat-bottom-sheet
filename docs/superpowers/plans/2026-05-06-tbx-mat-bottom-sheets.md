@@ -1,10 +1,10 @@
-# `@teqbench/tbx-mat-bottom-sheet` Implementation Plan
+# `@teqbench/tbx-mat-bottom-sheets` Implementation Plan
 
 > **Update 2026-05-07:** The `dragHandle` config field was removed post-implementation. The pill was decorative-only (no drag-to-dismiss behavior), which set up an expectation the package didn't fulfill. See `git log --grep='remove dragHandle'` for the removal commits.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Clone `@teqbench/tbx-mat-dialogs` into `@teqbench/tbx-mat-bottom-sheet`, swapping `MatDialog` for `MatBottomSheet` and applying two surgical adjustments — drop sizing config fields and add an opt-in `dragHandle?: boolean` — to produce a fully tested, lintable, buildable, publishable Angular library.
+**Goal:** Clone `@teqbench/tbx-mat-dialogs` into `@teqbench/tbx-mat-bottom-sheets`, swapping `MatDialog` for `MatBottomSheet` and applying two surgical adjustments — drop sizing config fields and add an opt-in `dragHandle?: boolean` — to produce a fully tested, lintable, buildable, publishable Angular library.
 
 **Architecture:** Near-mechanical 1:1 mirror of `tbx-mat-dialogs` per the design spec at `docs/superpowers/specs/2026-05-06-tbx-mat-bottom-sheet-design.md`. Same shell anatomy, same severity-leveled API, same footer-item model, same provider-config token pattern, same TSDoc / lint / format / test / docs / workflow conventions. Implementation-difference: the service opens `BottomSheetShellComponent` via `MatBottomSheet.open()` and awaits `afterDismissed()` instead of `afterClosed()`.
 
@@ -20,7 +20,7 @@ Apply these renames whenever a file is copied from `tbx-mat-dialogs`:
 
 <dl>
     <dt><code>@teqbench/tbx-mat-dialogs</code> (in code/imports/docs)</dt>
-    <dd>Replace with <code>@teqbench/tbx-mat-bottom-sheet</code>.</dd>
+    <dd>Replace with <code>@teqbench/tbx-mat-bottom-sheets</code>.</dd>
     <dt><code>TbxMatDialog</code> (PascalCase prefix)</dt>
     <dd>Replace with <code>TbxMatBottomSheet</code>.</dd>
     <dt><code>tbxMatDialog</code> (camelCase prefix)</dt>
@@ -66,7 +66,7 @@ Replace the file with the following (storybook scripts are intentionally absent 
 
 ```json
 {
-    "name": "@teqbench/tbx-mat-bottom-sheet",
+    "name": "@teqbench/tbx-mat-bottom-sheets",
     "version": "0.7.0",
     "description": "Opinionated Angular bottom sheet service built on Material's MatBottomSheet. Severity-leveled methods (success / error / warning / information / help / default) plus dialog-style UX patterns (confirm / input). Returns Promise<TbxMatBottomSheetResult<T, F>>. Severity colors via @teqbench/tbx-mat-severity-theme; pluggable icons via TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG. Optional drag-handle affordance. Angular 21+.",
     "type": "module",
@@ -181,7 +181,7 @@ Read `/Users/ben/Development/TeqBench/tbx-mat-bottom-sheet/release-please-config
 
 - [ ] **Step 2: Replace package-name in the bottom-sheet config**
 
-The file already has the structure; only `packages."."` needs `package-name: "@teqbench/tbx-mat-bottom-sheet"` (or whichever field the dialog repo uses — match exactly).
+The file already has the structure; only `packages."."` needs `package-name: "@teqbench/tbx-mat-bottom-sheets"` (or whichever field the dialog repo uses — match exactly).
 
 - [ ] **Step 3: Verify `extra-files` covers `package.json` and `package-lock.json`**
 
@@ -191,7 +191,7 @@ Match the dialog repo's `extra-files` entries verbatim.
 
 ```bash
 git add release-please-config.json
-git commit -m "chore: set release-please package name to @teqbench/tbx-mat-bottom-sheet"
+git commit -m "chore: set release-please package name to @teqbench/tbx-mat-bottom-sheets"
 ```
 
 ---
@@ -1225,7 +1225,7 @@ git commit -m "docs: add per-pipeline workflow reference docs"
 - All examples / code snippets reference the bottom-sheet API, the bottom-sheet token, the bottom-sheet button presets.
 - Add a "Drag handle" note in the "Usage" section showing how to enable it.
 - Drop any "Sizing" subsection (no sizing knobs).
-- Keep the **Feedback** section above **License** with bug-report and feature-request issue-template links pointing to `https://github.com/teqbench/tbx-mat-bottom-sheet/issues/new?template=...`.
+- Keep the **Feedback** section above **License** with bug-report and feature-request issue-template links pointing to `https://github.com/teqbench/tbx-mat-bottom-sheets/issues/new?template=...`.
 - Update badge URLs (build, test, coverage) to the new repo. The `GIST_ID` for badges may need to be created externally; for now, leave the badge URL pattern matching the dialog package and note in a comment that the GIST_ID will be filled in during repo setup.
 
 - [ ] **Step 3: Commit**

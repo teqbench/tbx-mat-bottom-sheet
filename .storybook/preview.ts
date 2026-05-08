@@ -10,7 +10,7 @@ import { removeStoryOverrideStyleTag } from '../src/components/story-overrides';
 // M3 prebuilt theme — provides typography, shape, and state-layer tokens.
 import '@angular/material/prebuilt-themes/azure-blue.css';
 
-import '../src/styles/_tbx-mat-bottom-sheet.scss';
+import '../src/styles/_tbx-mat-bottom-sheets.scss';
 
 const preview: Preview = {
     decorators: [

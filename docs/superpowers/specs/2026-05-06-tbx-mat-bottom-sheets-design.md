@@ -1,4 +1,4 @@
-# `@teqbench/tbx-mat-bottom-sheet` — Package Design
+# `@teqbench/tbx-mat-bottom-sheets` — Package Design
 
 > **Update 2026-05-07:** The `dragHandle` config field was removed post-implementation. The pill was decorative-only (no drag-to-dismiss behavior), which set up an expectation the package didn't fulfill. See `git log --grep='remove dragHandle'` for the removal commits.
 >
@@ -362,7 +362,7 @@ Service applies `panelClass: ['tbx-mat-bottom-sheet-panel', 'tbx-mat-bottom-shee
 
 ### Styles
 
-`src/styles/_tbx-mat-bottom-sheet.scss` is the entry partial. Consumers `@use '@teqbench/tbx-mat-bottom-sheet/styles/tbx-mat-bottom-sheet'` once, globally. Severity-tinted CSS custom properties come from `@teqbench/tbx-mat-severity-theme`.
+`src/styles/_tbx-mat-bottom-sheet.scss` is the entry partial. Consumers `@use '@teqbench/tbx-mat-bottom-sheets/styles/tbx-mat-bottom-sheet'` once, globally. Severity-tinted CSS custom properties come from `@teqbench/tbx-mat-severity-theme`.
 
 ## Tests
 
@@ -417,7 +417,7 @@ README structure: badges → tagline → TOC → Overview → At a glance (from 
 
 ### `package.json` highlights
 
-- `name`: `@teqbench/tbx-mat-bottom-sheet`
+- `name`: `@teqbench/tbx-mat-bottom-sheets`
 - `license`: `AGPL-3.0-only`
 - `engines.node`: `>=24.0.0`
 - `type`: `module`
@@ -439,7 +439,7 @@ README structure: badges → tagline → TOC → Overview → At a glance (from 
 
 ### `release-please-config.json`
 
-Copy verbatim, swap `package-name` to `"@teqbench/tbx-mat-bottom-sheet"`. `extra-files` updates `package.json` and `package-lock.json`. `include-component-in-tag: false`. Initial version `0.1.0`.
+Copy verbatim, swap `package-name` to `"@teqbench/tbx-mat-bottom-sheets"`. `extra-files` updates `package.json` and `package-lock.json`. `include-component-in-tag: false`. Initial version `0.1.0`.
 
 ## Lint, Format, Hooks
 

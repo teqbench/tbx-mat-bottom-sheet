@@ -26,7 +26,7 @@ import { TBX_MAT_SEVERITY_DEFAULT_SVG_ICONS, TbxMatSeveritySvgIconService, TbxMa
  * ```typescript
  * // app.config.ts — using the defaults directly.
  * import { TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG, TbxMatBottomSheetSeveritySvgIconService }
- *     from '@teqbench/tbx-mat-bottom-sheet';
+ *     from '@teqbench/tbx-mat-bottom-sheets';
  *
  * providers: [
  *     {
@@ -42,7 +42,7 @@ import { TBX_MAT_SEVERITY_DEFAULT_SVG_ICONS, TbxMatSeveritySvgIconService, TbxMa
  * ```typescript
  * // Subclassing with custom SVG markup.
  * import { Injectable } from '@angular/core';
- * import { TbxMatBottomSheetSeveritySvgIconService } from '@teqbench/tbx-mat-bottom-sheet';
+ * import { TbxMatBottomSheetSeveritySvgIconService } from '@teqbench/tbx-mat-bottom-sheets';
  * import { TbxMatSeverityLevel } from '@teqbench/tbx-mat-severity-theme';
  *
  * // MyBottomSheetSvgIcons is a hypothetical consumer-defined subclass.
