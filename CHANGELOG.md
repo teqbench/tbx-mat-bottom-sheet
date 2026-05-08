@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/teqbench/tbx-mat-bottom-sheets/compare/v2.0.0...v3.0.0) (2026-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* Consumers update their npm dependency from `@teqbench/tbx-mat-bottom-sheet` to `@teqbench/tbx-mat-bottom-sheets`, and update SCSS imports from `@teqbench/tbx-mat-bottom-sheet/styles/tbx-mat-bottom-sheet` to `@teqbench/tbx-mat-bottom-sheets/styles/tbx-mat-bottom-sheets`. The old package name (1.0.x and 2.0.0) remains on the registry as a historical artifact; new releases publish only under the new name.
+
+### Features
+
+* rename package to @teqbench/tbx-mat-bottom-sheets ([4fda113](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/4fda1132f5868f46029c70f23d413d747a70f7f6))
+
 ## [2.0.0](https://github.com/teqbench/tbx-mat-bottom-sheet/compare/v1.0.1...v2.0.0) (2026-05-08)
 
 
