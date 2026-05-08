@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/teqbench/tbx-mat-bottom-sheet/compare/v1.0.1...v2.0.0) (2026-05-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** footer buttons can no longer set `emphasis: 'destructive'`. Migrate by removing the destructive emphasis and elevating the bottom sheet's `severity` to 'warning' or 'error'.
+
+### Features
+
+* **api:** drop destructive emphasis — use bottom-sheet severity for destructive prompts ([fe53c91](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/fe53c91a59b9b46f9f7efdd028560d2ff019784d))
+
+
+### Bug Fixes
+
+* **styles:** decouple close-icon opacity from action-button opacity ([8f41773](https://github.com/teqbench/tbx-mat-bottom-sheet/commit/8f4177383a00e36f7df0be5d0c659ff0ed0acf80))
+
 ## [1.0.1](https://github.com/teqbench/tbx-mat-bottom-sheet/compare/v1.0.0...v1.0.1) (2026-05-07)
 
 
