@@ -413,7 +413,7 @@ describe('BottomSheetShellComponent', () => {
                     label: 'Delete',
                     icon: 'delete',
                     result: TbxMatBottomSheetDismissReason.Affirm,
-                    emphasis: 'destructive',
+                    emphasis: 'primary',
                 }),
             ];
             const fixture = createFixture({ title: 'Test' }, footer);
@@ -934,14 +934,6 @@ describe('BottomSheetShellComponent', () => {
             expect(button).not.toBeNull();
         });
 
-        it('should render destructive button as filled', () => {
-            const footer: TbxMatBottomSheetFooterControlType[] = [buildButton({ emphasis: 'destructive', result: TbxMatBottomSheetDismissReason.Affirm })];
-            const fixture = createFixture({ title: 'Test' }, footer);
-
-            const button = fixture.debugElement.query(By.css('.bottom-sheet-footer button[matButton="filled"]'));
-            expect(button).not.toBeNull();
-        });
-
         it('should render text button as text', () => {
             const footer: TbxMatBottomSheetFooterControlType[] = [buildButton({ emphasis: 'text', result: TbxMatBottomSheetDismissReason.Cancel })];
             const fixture = createFixture({ title: 'Test' }, footer);
@@ -958,37 +950,12 @@ describe('BottomSheetShellComponent', () => {
             expect(button).not.toBeNull();
         });
 
-        // Primary buttons no longer carry a dedicated class — Material's
-        // filled-container/label tokens are overridden at the panel level
-        // by `_severity-panel` in `_tbx-mat-bottom-sheet.scss` (mirroring how
-        // banners/notifications style their action buttons), so any
-        // `matButton="filled"` button on the bottom sheet inherits the severity
-        // styling automatically. Only `destructive` keeps an explicit
-        // class because it forces the Error severity tokens regardless of
-        // the bottom sheet's own type.
-
-        it('should apply tbx-mat-bottom-sheet-btn-destructive class to destructive button', () => {
-            const footer: TbxMatBottomSheetFooterControlType[] = [buildButton({ emphasis: 'destructive', result: TbxMatBottomSheetDismissReason.Affirm })];
-            const fixture = createFixture({ title: 'Test', type: TbxMatSeverityLevel.Default }, footer);
-
-            const button = fixture.debugElement.query(By.css('.bottom-sheet-footer button'));
-            expect(button.nativeElement.classList.contains('tbx-mat-bottom-sheet-btn-destructive')).toBe(true);
-        });
-
-        it('should not apply destructive class to a primary button', () => {
-            const footer: TbxMatBottomSheetFooterControlType[] = [buildButton({ emphasis: 'primary', result: TbxMatBottomSheetDismissReason.Affirm })];
-            const fixture = createFixture({ title: 'Test', type: TbxMatSeverityLevel.Warning }, footer);
-
-            const button = fixture.debugElement.query(By.css('.bottom-sheet-footer button'));
-            expect(button.nativeElement.classList.contains('tbx-mat-bottom-sheet-btn-destructive')).toBe(false);
-        });
-
-        it('should not apply destructive class to a text button', () => {
-            const footer: TbxMatBottomSheetFooterControlType[] = [buildButton({ emphasis: 'text', result: TbxMatBottomSheetDismissReason.Cancel })];
-            const fixture = createFixture({ title: 'Test' }, footer);
-
-            const button = fixture.debugElement.query(By.css('.bottom-sheet-footer button'));
-            expect(button.nativeElement.classList.contains('tbx-mat-bottom-sheet-btn-destructive')).toBe(false);
-        });
+        // Primary buttons inherit Material's filled-container/label tokens
+        // from the panel-level `_severity-panel` mixin in
+        // `_tbx-mat-bottom-sheet.scss` (mirroring how banners/notifications
+        // style their action buttons), so any `matButton="filled"` button on
+        // the bottom sheet inherits the severity styling automatically.
+        // Destructive prompts are expressed via the bottom sheet `severity`
+        // ('warning' or 'error'), not via a per-button emphasis variant.
     });
 });

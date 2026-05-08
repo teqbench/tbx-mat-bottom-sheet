@@ -6,7 +6,7 @@
 - term: Footer item
   definition: An entry in the bottom sheet footer with a key (used in the returned footerValues record) and an align ('start' flows left, 'end' flows right). The first 'end' item gets margin-left auto, separating start- and end-aligned items.
 - term: Footer button emphasis
-  definition: Visual weight of a footer button — 'primary' (filled, severity-colored), 'destructive' (filled, always Error-colored regardless of bottom sheet severity), or 'text' (no fill).
+  definition: Visual weight of a footer button — 'primary' (filled, severity-colored) or 'text' (no fill). Destructive prompts are expressed via the bottom sheet severity ('warning' or 'error'), not via a per-button variant.
 - term: Dismiss reason
   definition: The cause of a bottom sheet closing — Affirm, Deny, Cancel, or Close. Footer buttons declare a result to map their click; backdrop click and Escape both emit Close with empty footer values.
 - term: Provider config

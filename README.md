@@ -274,7 +274,7 @@ providers: [
 - **Severity level** — a classification (default, success, error, warning, information, help) that selects the icon and color scheme applied to a bottom sheet. Identical to the severity model used by `tbx-mat-banners` and `tbx-mat-notifications`.
 - **Bottom sheet patterns** — `confirm` and `input` are bottom sheet-specific UX wrappers around the severity model. `confirm` defaults to Help severity with Yes/No buttons; `input` defaults to Information severity with a projected content component and OK/Cancel buttons.
 - **Footer item** — every footer entry has a `key` (used in the returned `footerValues` record) and an `align` (`'start'` flows left, `'end'` flows right). The first `align: 'end'` item gets `margin-left: auto`, separating start- and end-aligned items.
-- **Footer button emphasis** — `'primary'` (filled, severity-colored), `'destructive'` (filled, always Error-colored regardless of bottom sheet severity), or `'text'` / undefined (text, no fill).
+- **Footer button emphasis** — `'primary'` (filled, severity-colored) or `'text'` / undefined (text, no fill). For destructive prompts, set the bottom sheet `severity` to `'warning'` (reversible) or `'error'` (irreversible) — the panel itself communicates danger.
 - **Dismiss reason** — `Affirm`, `Deny`, `Cancel`, or `Close`. Footer buttons declare a `result` to map their click; backdrop click and Escape both emit `Close` with empty footer values.
 - **Provider config** — the DI-provided configuration (`TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG`) that supplies the severity icon resolver and an optional close icon resolver. Required.
 - **Content component** — a consumer-defined `@Component` that implements `TbxMatBottomSheetData<T>`. Used in the body of input bottom sheets; the shell reads `isValid` to drive the affirm button's disabled state and `value` to extract data on confirm.
@@ -379,7 +379,7 @@ Implemented by components projected into the body of input bottom sheets.
 
 ### Footer types
 
-`TbxMatBottomSheetFooterControlType` is a discriminated union over `TbxMatBottomSheetFooterButton`, `TbxMatBottomSheetFooterCheckbox`, `TbxMatBottomSheetFooterToggle`, `TbxMatBottomSheetFooterRadioGroup`, and `TbxMatBottomSheetFooterToggleGroup`. Every item has `key` and `align: 'start' | 'end'`. Buttons additionally take `label`, `icon` / `iconPosition`, `emphasis: 'primary' | 'destructive' | 'text'`, `result: TbxMatBottomSheetDismissReason`, and an optional `disabled: boolean | Signal<boolean>`.
+`TbxMatBottomSheetFooterControlType` is a discriminated union over `TbxMatBottomSheetFooterButton`, `TbxMatBottomSheetFooterCheckbox`, `TbxMatBottomSheetFooterToggle`, `TbxMatBottomSheetFooterRadioGroup`, and `TbxMatBottomSheetFooterToggleGroup`. Every item has `key` and `align: 'start' | 'end'`. Buttons additionally take `label`, `icon` / `iconPosition`, `emphasis: 'primary' | 'text'`, `result: TbxMatBottomSheetDismissReason`, and an optional `disabled: boolean | Signal<boolean>`.
 
 Convenience presets are exported alongside:
 
@@ -402,7 +402,7 @@ The shared severity-theme mixin emits per-level pairs. Themes can override the b
     <dt><code>--tbx-mat-bottom-sheet-success-background</code> / <code>--tbx-mat-bottom-sheet-success-text</code></dt>
     <dd>Success tier.</dd>
     <dt><code>--tbx-mat-bottom-sheet-error-background</code> / <code>--tbx-mat-bottom-sheet-error-text</code></dt>
-    <dd>Error tier (also used by the always-Error <code>destructive</code> button emphasis).</dd>
+    <dd>Error tier — set as the bottom sheet <code>severity</code> for irreversible destructive prompts.</dd>
     <dt><code>--tbx-mat-bottom-sheet-warning-background</code> / <code>--tbx-mat-bottom-sheet-warning-text</code></dt>
     <dd>Warning tier.</dd>
     <dt><code>--tbx-mat-bottom-sheet-information-background</code> / <code>--tbx-mat-bottom-sheet-information-text</code></dt>
