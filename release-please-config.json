@@ -3,7 +3,7 @@
   "release-type": "node",
   "packages": {
     ".": {
-      "package-name": "@teqbench/tbx-mat-bottom-sheet",
+      "package-name": "@teqbench/tbx-mat-bottom-sheets",
       "initial-version": "0.1.0",
       "extra-files": [
         "package.json",

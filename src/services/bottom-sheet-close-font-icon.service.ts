@@ -39,7 +39,7 @@ import { TbxMatFontIconService } from '@teqbench/tbx-mat-icons';
  *     TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG,
  *     TbxMatBottomSheetSeverityFontIconService,
  *     TbxMatBottomSheetCloseFontIconService,
- * } from '@teqbench/tbx-mat-bottom-sheet';
+ * } from '@teqbench/tbx-mat-bottom-sheets';
  *
  * providers: [
  *     {

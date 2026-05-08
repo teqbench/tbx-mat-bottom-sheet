@@ -33,7 +33,7 @@ import { TBX_MAT_SEVERITY_DEFAULT_FONT_LIGATURES, TbxMatSeverityFontIconService,
  * // app.config.ts — using with MAT_ICON_DEFAULT_OPTIONS.
  * import { MAT_ICON_DEFAULT_OPTIONS } from '@angular/material/icon';
  * import { TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG, TbxMatBottomSheetSeverityFontIconService }
- *     from '@teqbench/tbx-mat-bottom-sheet';
+ *     from '@teqbench/tbx-mat-bottom-sheets';
  *
  * providers: [
  *     { provide: MAT_ICON_DEFAULT_OPTIONS, useValue: { fontSet: 'material-symbols-rounded' } },
