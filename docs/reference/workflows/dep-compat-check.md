@@ -38,7 +38,7 @@ Per-repository isolation: scheduled and manual runs queue sequentially without c
 
 ## Configuration
 
-The local `.yml` file passes `epic-issue-number` to the reusable workflow. This must be set to the tracking issue number during repository setup (see SETUP.md step 7).
+The local `.yml` file passes `epic-issue-number` to the reusable workflow. This must be set to the tracking issue number during repository setup.
 
 ---
 
