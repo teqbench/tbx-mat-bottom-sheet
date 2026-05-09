@@ -13,5 +13,5 @@ concurrency:
 
 jobs:
   docs-deploy:
-    uses: teqbench/.github/.github/workflows/docs-deploy.yml@5b246088833509a300b4b6d1e3700a3e5cfc69c4 # main
+    uses: teqbench/.github/.github/workflows/docs-deploy.yml@v2.6.0
     secrets: inherit
