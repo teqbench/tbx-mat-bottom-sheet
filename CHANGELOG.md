@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.1](https://github.com/teqbench/tbx-mat-bottom-sheets/compare/v3.0.0...v3.0.1) (2026-05-09)
+
+
+### Bug Fixes
+
+* **ci:** pin reusable workflows to [@v2](https://github.com/v2).6.0 ([84937da](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/84937daa1211c38c98e232b0d9ddad7681797924))
+* **ci:** pin reusable workflows to [@v2](https://github.com/v2).6.0 + bump [@teqbench](https://github.com/teqbench) peerDeps ([b5a39df](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/b5a39df25699256077e1298185da56258095f6d4))
+* **deps:** bump [@teqbench](https://github.com/teqbench) peerDeps to latest patches ([5da2e6c](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/5da2e6c641cf4bbac67d9faaf0a2ca39a6a528ad))
+* **shell:** remove asymmetric spacing above the second divider ([4a07878](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/4a07878830b345511cfb3535b8e71c7c3a5b8634))
+* **shell:** symmetric divider spacing, badge URLs, drop SETUP.md ([76246c8](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/76246c8295eaaa05ec7b53262e525237976a0f2c))
+
 ## [3.0.0](https://github.com/teqbench/tbx-mat-bottom-sheets/compare/v2.0.0...v3.0.0) (2026-05-08)
 
 
