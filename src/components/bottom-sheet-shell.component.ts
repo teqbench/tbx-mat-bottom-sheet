@@ -311,8 +311,7 @@ export interface BottomSheetShellData {
 
         /* Body element provides scrollable overflow for long content. */
         .bottom-sheet-body {
-            padding: 1.25rem var(--bottom-sheet-padding-inline);
-            min-height: 3rem;
+            padding: 1rem var(--bottom-sheet-padding-inline);
             max-height: 65vh;
             overflow: auto;
         }
