@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.0.2](https://github.com/teqbench/tbx-mat-bottom-sheets/compare/v3.0.1...v3.0.2) (2026-05-10)
+
+
+### Bug Fixes
+
+* **ci:** pin reusable workflows to [@v2](https://github.com/v2).9.3 ([2072a8c](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/2072a8c87ceab3023963553904bf3ae6cb25bbe4)), closes [#28](https://github.com/teqbench/tbx-mat-bottom-sheets/issues/28)
+* **deps:** bump tbx-mat-icons and tbx-mat-severity-theme peerDeps ([ccadf61](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/ccadf619ba50ddd6ce8e66344d32e72adb26a1d2))
+* **deps:** bump tbx-mat-icons and tbx-mat-severity-theme peerDeps ([785933a](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/785933a4d2630f444ae9c3b55c8f0bcab36acb5f)), closes [#28](https://github.com/teqbench/tbx-mat-bottom-sheets/issues/28)
+
 ## [3.0.1](https://github.com/teqbench/tbx-mat-bottom-sheets/compare/v3.0.0...v3.0.1) (2026-05-09)
 
 
