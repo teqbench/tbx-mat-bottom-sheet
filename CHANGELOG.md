@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.3](https://github.com/teqbench/tbx-mat-bottom-sheets/compare/v3.0.2...v3.0.3) (2026-05-11)
+
+
+### Bug Fixes
+
+* **changelog:** strip broken at-mention autolinks from history ([4940f9e](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/4940f9e72a86c1ffcbb9b4fa2acdd183f67e9a14))
+* **changelog:** strip broken at-mention autolinks from history ([c89172c](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/c89172c5e8895f55ae537a0fd2163fd349a1713a))
+
 ## [3.0.2](https://github.com/teqbench/tbx-mat-bottom-sheets/compare/v3.0.1...v3.0.2) (2026-05-10)
 
 

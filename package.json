@@ -1,6 +1,6 @@
 {
   "name": "@teqbench/tbx-mat-bottom-sheets",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Opinionated Angular bottom sheet service built on Material's MatBottomSheet. Severity-leveled methods (success / error / warning / information / help / default) plus dialog-style UX patterns (confirm / input). Returns Promise<TbxMatBottomSheetResult<T, F>>. Severity colors via @teqbench/tbx-mat-severity-theme; pluggable icons via TBX_MAT_BOTTOM_SHEET_PROVIDER_CONFIG. Angular 21+.",
   "type": "module",
   "exports": {
