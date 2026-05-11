@@ -5,7 +5,7 @@
 
 ### Bug Fixes
 
-* **ci:** pin reusable workflows to [@v2](https://github.com/v2).9.3 ([2072a8c](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/2072a8c87ceab3023963553904bf3ae6cb25bbe4)), closes [#28](https://github.com/teqbench/tbx-mat-bottom-sheets/issues/28)
+* **ci:** pin reusable workflows to v2.9.3 ([2072a8c](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/2072a8c87ceab3023963553904bf3ae6cb25bbe4)), closes [#28](https://github.com/teqbench/tbx-mat-bottom-sheets/issues/28)
 * **deps:** bump tbx-mat-icons and tbx-mat-severity-theme peerDeps ([ccadf61](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/ccadf619ba50ddd6ce8e66344d32e72adb26a1d2))
 * **deps:** bump tbx-mat-icons and tbx-mat-severity-theme peerDeps ([785933a](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/785933a4d2630f444ae9c3b55c8f0bcab36acb5f)), closes [#28](https://github.com/teqbench/tbx-mat-bottom-sheets/issues/28)
 
@@ -14,9 +14,9 @@
 
 ### Bug Fixes
 
-* **ci:** pin reusable workflows to [@v2](https://github.com/v2).6.0 ([84937da](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/84937daa1211c38c98e232b0d9ddad7681797924))
-* **ci:** pin reusable workflows to [@v2](https://github.com/v2).6.0 + bump [@teqbench](https://github.com/teqbench) peerDeps ([b5a39df](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/b5a39df25699256077e1298185da56258095f6d4))
-* **deps:** bump [@teqbench](https://github.com/teqbench) peerDeps to latest patches ([5da2e6c](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/5da2e6c641cf4bbac67d9faaf0a2ca39a6a528ad))
+* **ci:** pin reusable workflows to v2.6.0 ([84937da](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/84937daa1211c38c98e232b0d9ddad7681797924))
+* **ci:** pin reusable workflows to v2.6.0 + bump teqbench peerDeps ([b5a39df](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/b5a39df25699256077e1298185da56258095f6d4))
+* **deps:** bump teqbench peerDeps to latest patches ([5da2e6c](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/5da2e6c641cf4bbac67d9faaf0a2ca39a6a528ad))
 * **shell:** remove asymmetric spacing above the second divider ([4a07878](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/4a07878830b345511cfb3535b8e71c7c3a5b8634))
 * **shell:** symmetric divider spacing, badge URLs, drop SETUP.md ([76246c8](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/76246c8295eaaa05ec7b53262e525237976a0f2c))
 
@@ -105,7 +105,7 @@
 ### Bug Fixes
 
 * **security:** switch reporting channel to email for private template repo ([5d0309d](https://github.com/teqbench/teqbench.dev.templates.tbx-package/commit/5d0309dbb948341cd83a8f39e05cba4d6648ccf4))
-* **tsdoc:** set [@related](https://github.com/related) tag to allowMultiple matching CLAUDE.md convention ([3e346a2](https://github.com/teqbench/teqbench.dev.templates.tbx-package/commit/3e346a21c052ccbd02b76b49714a716d28238ad3))
+* **tsdoc:** set related tag to allowMultiple matching CLAUDE.md convention ([3e346a2](https://github.com/teqbench/teqbench.dev.templates.tbx-package/commit/3e346a21c052ccbd02b76b49714a716d28238ad3))
 
 ## [0.6.1](https://github.com/teqbench/teqbench.dev.templates.tbx-package/compare/v0.6.0...v0.6.1) (2026-03-25)
 
@@ -203,7 +203,7 @@
 
 ### Features
 
-* scaffold [@teqbench](https://github.com/teqbench) package template ([47fb9c7](https://github.com/teqbench/teqbench.dev.templates.tbx-package/commit/47fb9c7a708581e9d6188ceaef1ff1214938cc83))
+* scaffold teqbench package template ([47fb9c7](https://github.com/teqbench/teqbench.dev.templates.tbx-package/commit/47fb9c7a708581e9d6188ceaef1ff1214938cc83))
 * **template:** harden package template to production-grade ([20cd619](https://github.com/teqbench/teqbench.dev.templates.tbx-package/commit/20cd6191c9248171f3542b82c381e8ed5c5d1d20))
 * **template:** harden package template to production-grade ([b0ec3a2](https://github.com/teqbench/teqbench.dev.templates.tbx-package/commit/b0ec3a21eab0c23eb1ccfeed83908ba63db436a3))
 
