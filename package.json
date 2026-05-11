@@ -49,8 +49,8 @@
     "@angular/cdk": ">=21.0.0",
     "@angular/core": ">=21.0.0",
     "@angular/material": ">=21.0.0",
-    "@teqbench/tbx-mat-icons": ">=4.2.2",
-    "@teqbench/tbx-mat-severity-theme": ">=8.0.4"
+    "@teqbench/tbx-mat-icons": ">=4.2.3",
+    "@teqbench/tbx-mat-severity-theme": ">=8.0.5"
   },
   "devDependencies": {
     "@analogjs/storybook-angular": "2.3.1",
