@@ -53,7 +53,7 @@
     "@teqbench/tbx-mat-severity-theme": ">=8.0.5"
   },
   "devDependencies": {
-    "@analogjs/storybook-angular": "2.5.0",
+    "@analogjs/storybook-angular": "2.5.1",
     "@analogjs/vite-plugin-angular": "2.5.0",
     "@analogjs/vitest-angular": "2.5.0",
     "@angular/animations": "^21.2.6",
