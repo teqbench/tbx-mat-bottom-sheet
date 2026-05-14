@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.4](https://github.com/teqbench/tbx-mat-bottom-sheets/compare/v3.0.3...v3.0.4) (2026-05-14)
+
+
+### Bug Fixes
+
+* **deps:** Update teqbench packages ([#77](https://github.com/teqbench/tbx-mat-bottom-sheets/issues/77)) ([e70f388](https://github.com/teqbench/tbx-mat-bottom-sheets/commit/e70f388e78b3359499da4c01dc87aa0de35aabf5))
+
 ## [3.0.3](https://github.com/teqbench/tbx-mat-bottom-sheets/compare/v3.0.2...v3.0.3) (2026-05-11)
 
 
